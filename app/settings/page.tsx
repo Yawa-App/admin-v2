@@ -166,6 +166,7 @@ export default function ProfileSettings() {
                 <div className="flex items-center justify-between text-gray-700">
                   <label htmlFor="email-notifications">Email Notifications</label>
                   <Switch
+                    className="bg-[#03BDE9]"
                     id="email-notifications"
                     checked={user.notifications.email}
                     onCheckedChange={() => handleNotificationChange('email')}
@@ -175,6 +176,7 @@ export default function ProfileSettings() {
                   <label htmlFor="push-notifications">Push Notifications</label>
                   <Switch
                     id="push-notifications"
+                    className="bg-[#03BDE9]"
                     checked={user.notifications.push}
                     onCheckedChange={() => handleNotificationChange('push')}
                   />
@@ -182,6 +184,7 @@ export default function ProfileSettings() {
                 <div className="flex items-center justify-between text-gray-700">
                   <label htmlFor="sms-notifications">SMS Notifications</label>
                   <Switch
+                    className="bg-[#03BDE9]"
                     id="sms-notifications"
                     checked={user.notifications.sms}
                     onCheckedChange={() => handleNotificationChange('sms')}
@@ -191,7 +194,7 @@ export default function ProfileSettings() {
               <CardFooter>
               <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center rounded-md bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Save Preferences
                 </button>
