@@ -1,4 +1,4 @@
-import { Home, Users, Shield, MapPin, Building2, Radio, Users2, AirplayIcon as Broadcast, Settings, LogOut } from 'lucide-react'
+import { Home, Users, Shield, MapPin, Building2, Radio, Users2, AirplayIcon as Broadcast, Settings, LogOut, BadgeInfo } from 'lucide-react'
 import Link from "next/link"
 import { cn } from "../lib/utils"
 import { usePathname } from 'next/navigation';
@@ -101,7 +101,7 @@ export function Sidebar({ className }: SidebarProps) {
                 ${isActive("#") ? 'bg-[#03bde914] text-[#03BDE9]' : 'text-gray-500'} 
                 hover:text-gray-900`}
             >
-              <Broadcast className="h-4 w-4" />
+              <BadgeInfo className="h-4 w-4" />
               <span className="text-md font-medium">Support</span>
             </Link>
             <Link
