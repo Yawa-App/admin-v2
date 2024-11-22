@@ -78,6 +78,21 @@ export default function Dashboard() {
             value="5"
             label="Safety Org. Accounts"
           />
+          <StatCard
+            icon={<Building className="h-6 w-6 text-blue-500" />}
+            value="25"
+            label="States"
+          />
+          <StatCard
+            icon={<Building className="h-6 w-6 text-blue-500" />}
+            value="73"
+            label="Agencies"
+          />
+          <StatCard
+            icon={<Building className="h-6 w-6 text-blue-500" />}
+            value="104"
+            label="Responders"
+          />
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           <SituationalReportChart />
