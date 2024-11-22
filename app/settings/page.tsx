@@ -85,6 +85,7 @@ export default function ProfileSettings() {
                     <Input
                       id="name"
                       name="name"
+                      className="text-gray-500"
                       value={user.name}
                       onChange={handleInputChange}
                     />
@@ -95,6 +96,7 @@ export default function ProfileSettings() {
                       id="email"
                       name="email"
                       type="email"
+                      className="text-gray-500"
                       value={user.email}
                       onChange={handleInputChange}
                     />
@@ -105,6 +107,7 @@ export default function ProfileSettings() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      className="text-gray-500"
                       value={user.phone}
                       onChange={handleInputChange}
                     />
@@ -116,11 +119,12 @@ export default function ProfileSettings() {
                       name="bio"
                       value={user.bio}
                       onChange={handleInputChange}
+                      className="text-gray-500"
                     />
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <button type="submit">Save Changes</button>
+                  <button type="submit" className="bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500">Save Changes</button>
                 </CardFooter>
               </form>
             </Card>
@@ -136,20 +140,20 @@ export default function ProfileSettings() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <label htmlFor="current-password">Current Password</label>
-                    <Input id="current-password" type="password" />
+                    <label htmlFor="current-password" className="text-gray-500">Current Password</label>
+                    <Input id="current-password" className="text-gray-500" type="password" />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="new-password">New Password</label>
-                    <Input id="new-password" type="password" />
+                    <label htmlFor="new-password" className="text-gray-500">New Password</label>
+                    <Input id="new-password" className="text-gray-500" type="password" />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="confirm-password">Confirm New Password</label>
-                    <Input id="confirm-password" type="password" />
+                    <label htmlFor="confirm-password" className="text-gray-500">Confirm New Password</label>
+                    <Input id="confirm-password" className="text-gray-500" type="password" />
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <button type="submit">Update Password</button>
+                  <button type="submit" className="bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500">Update Password</button>
                 </CardFooter>
               </form>
             </Card>
@@ -164,16 +168,17 @@ export default function ProfileSettings() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between text-gray-700">
-                  <label htmlFor="email-notifications">Email Notifications</label>
+                  <label className="text-gray-500" htmlFor="email-notifications">Email Notifications</label>
                   <Switch
                     className="bg-[#03BDE9]"
                     id="email-notifications"
+                    
                     checked={user.notifications.email}
                     onCheckedChange={() => handleNotificationChange('email')}
                   />
                 </div>
                 <div className="flex items-center justify-between text-gray-700">
-                  <label htmlFor="push-notifications">Push Notifications</label>
+                  <label className="text-gray-500" htmlFor="push-notifications">Push Notifications</label>
                   <Switch
                     id="push-notifications"
                     className="bg-[#03BDE9]"
@@ -182,7 +187,7 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex items-center justify-between text-gray-700">
-                  <label htmlFor="sms-notifications">SMS Notifications</label>
+                  <label className="text-gray-500" htmlFor="sms-notifications">SMS Notifications</label>
                   <Switch
                     className="bg-[#03BDE9]"
                     id="sms-notifications"
