@@ -96,6 +96,15 @@ export function Sidebar({ className }: SidebarProps) {
               <span className="text-md font-medium">Broadcast</span>
             </Link>
             <Link
+              href="/customise"
+              className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-none 
+                ${isActive("/customise") ? 'bg-[#03bde914] text-[#03BDE9]' : 'text-gray-500'} 
+                hover:text-gray-900`}
+            >
+              <Broadcast className="h-4 w-4" />
+              <span className="text-md font-medium">Customise</span>
+            </Link>
+            <Link
               href="#"
               className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-none 
                 ${isActive("#") ? 'bg-[#03bde914] text-[#03BDE9]' : 'text-gray-500'} 
