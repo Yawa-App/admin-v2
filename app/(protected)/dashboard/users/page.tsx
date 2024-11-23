@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/table'
 import { useGetUsersQuery } from '@/components/features/app/userSlide'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
+import profile from '../../../../public/profile.png'
 
 // This is mock data. In a real application, you'd fetch this from an API.
 
@@ -44,8 +45,8 @@ function Users () {
   }
 
   return (
-    <div className='flex min-h-screen'>
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className='flex-1 space-y-8 p-8 pt-6'>
         <div className='flex items-start justify-start flex-col gap-4'>
           <h2 className='text-3xl font-bold tracking-tight text-gray-700'>
@@ -85,11 +86,18 @@ function Users () {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers?.map((user: any, index: number) => (
+              {currentUsers?.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={8} className="text-center text-gray-500">
+                    No users found.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                currentUsers?.map((user: any, index: number) => (
                 <TableRow key={user.id || index}>
                   <TableCell>
                     <Image
-                      src={user?.picture || '/path/to/placeholder/image.png'}
+                      src={user?.picture || profile}
                       alt={`${user?.name}'s profile`}
                       className='rounded-full w-10 h-10'
                       width={30}
@@ -122,7 +130,7 @@ function Users () {
                     })}
                   </TableCell>
                 </TableRow>
-              ))}
+              )))}
             </TableBody>
           </Table>
         </div>
@@ -130,22 +138,22 @@ function Users () {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
+              <PaginationPrevious className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
             </PaginationItem>
             {[(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
+              <PaginationItem key={index} className=' text-gray-800 px-2 py-1 rounded-md mx-2'>
                 <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
                   {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
+              <PaginationNext className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
       </div>
-    </div>
+    </>
   )
 }
 

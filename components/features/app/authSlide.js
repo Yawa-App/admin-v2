@@ -9,6 +9,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: credentials,
       }),
+      transformResponse: (response) => {
+        if (response.token) {
+          document.cookie = `token=${response.token}; path=/`
+        }
+        return response
+      },
     }),
     getcategories: builder.query({
       query: () => ({

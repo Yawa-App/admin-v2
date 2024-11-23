@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import React, { useState } from 'react'
-import { Sidebar } from "@/components/sidebar"
 import {
   Table,
   TableBody,
@@ -41,8 +40,8 @@ function Circles() {
   // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className="flex-1 space-y-8 p-8 pt-6">
         <div className="flex items-start justify-start flex-col gap-4">
           <h2 className="text-3xl font-bold tracking-tight text-gray-700">Circles</h2>
@@ -100,7 +99,7 @@ function Circles() {
           </PaginationContent>
         </Pagination> */}
       </div>
-    </div>
+    </>
   )
 }
 

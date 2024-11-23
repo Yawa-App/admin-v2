@@ -3,9 +3,7 @@
 import localFont from 'next/font/local'
 import './globals.css'
 import { Provider } from 'react-redux'
-// import { PersistGate } from 'redux-persist/integration/react'
 import { store } from '@/components/features/api/store'
-import { Sidebar } from '@/components/sidebar'
 import { Toaster } from '@/components/ui/toaster'
 
 const geistSans = localFont({
@@ -31,10 +29,7 @@ export default function RootLayout ({
       >
         <Provider store={store}>
           <Toaster />
-          {/* <Sidebar /> */}
-          {/* <PersistGate loading={null} persistor={persistor}> */}
           {children}
-          {/* </PersistGate> */}
         </Provider>
       </body>
     </html>

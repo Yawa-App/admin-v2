@@ -1,12 +1,10 @@
 "use client"
 import Tabs from "@/components/customise/tabs";
-import { Sidebar } from "@/components/sidebar";
-
 
 export default function CustomizePage() {
     return (
         <>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="flex-1 space-y-8 p-8 pt-6">
             <div className="flex items-start justify-start flex-col gap-4">
                 <h2 className="text-3xl font-bold tracking-tight text-gray-700">Customise</h2>

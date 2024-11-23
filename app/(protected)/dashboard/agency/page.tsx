@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import { Sidebar } from "@/components/sidebar"
+import React, { useState } from 'react'
 import {
   Table,
   TableBody,
@@ -10,9 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { BASEURLAPI } from '@/components/utils/api';
-
-import { agencies } from '@/data/data'
 import {
     Dialog,
     DialogContent,
@@ -22,11 +18,13 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+  import profile from '../../../../public/profile.png'
   import { Input } from "@/components/ui/input"
   import { useCreateagencyMutation, useGetAllAgencyQuery } from '@/components/features/app/agencyApi'
 import { useToast } from '@/hooks/use-toast'
 import { useGetcategoriesQuery } from '@/components/features/app/authSlide';
-
+import { Pagination, PaginationPrevious, PaginationLink, PaginationNext, PaginationContent, PaginationItem } from '@/components/ui/pagination';
+import Image from 'next/image'
 const MultiSelect = ({ 
   options, 
   selectedValues, 
@@ -68,15 +66,14 @@ const MultiSelect = ({
 };
 
 function Agency() {
-  // const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const { toast } = useToast()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [createAgency, { isLoading, isError }] = useCreateagencyMutation()
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
 
-  const usersPerPage = 5
-  const currentUsers = agencies.slice(0, usersPerPage)
+
   const {
     data
     // isLoading,
@@ -92,10 +89,16 @@ function Agency() {
     // error,
   } = useGetAllAgencyQuery({})
 
+  const usersPerPage = 10
+  // const currentUsers = agencies.slice(0, usersPerPage)
   const currentAgency = agencyData?.agencies.slice(0, usersPerPage) || []
+  const totalPages = Math.ceil(agencyData?.agencies?.totalAgencies / usersPerPage)
+  const indexOfLastUser = currentPage * usersPerPage
+  const indexOfFirstUser = indexOfLastUser - usersPerPage
 
-
-
+  function paginate(pageNumber: number): void {
+    setCurrentPage(pageNumber)
+  }
   const handleInvite = async () => {
     try {
       await createAgency({ name, email, category: selectedCategoryIds }).unwrap(); // Include categoryIds
@@ -117,8 +120,8 @@ function Agency() {
 
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className="flex-1 space-y-8 p-8 pt-6">
 
       <div className="flex items-center justify-between ">
@@ -190,10 +193,9 @@ function Agency() {
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Profile</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Full Name</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Email</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Phone Number</TableHead>
+                {/* <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Phone Number</TableHead> */}
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">LGA</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Safety Circle</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Created At</TableHead>
               </TableRow>
             </TableHeader>
@@ -208,14 +210,20 @@ function Agency() {
                 currentAgency.map((agency: any) => (
                   <TableRow key={agency.id}>
                     <TableCell>
-                      <img src={agency.image} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
+                      <Image src={profile} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
                     </TableCell>
                     <TableCell className="text-sm text-gray-500 capitalize">{agency.name}</TableCell>
                     <TableCell className="text-sm text-gray-500">{agency.email}</TableCell>
-                    <TableCell className="text-sm text-gray-500">{agency.phone}</TableCell>
+                    {/* <TableCell className="text-sm text-gray-500">{agency.phone}</TableCell> */}
                     <TableCell className="text-sm text-gray-500">{agency.state}</TableCell>
                     <TableCell className="text-sm text-gray-500">{agency.lga}</TableCell>
-                    <TableCell className="text-sm text-gray-500">{agency.createdAt}</TableCell>
+                    <TableCell className="text-sm text-gray-500">
+                      {new Date(agency.createdAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </TableCell>
                   </TableRow>
                 ))
               )}
@@ -223,8 +231,25 @@ function Agency() {
           </Table>
         </div>
 
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
+            </PaginationItem>
+            {[(totalPages)].map((_, index) => (
+              <PaginationItem key={index} className=' text-gray-800 px-2 py-1 rounded-md mx-2'>
+                <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination> 
       </div>
-    </div>
+    </>
   )
 }
 

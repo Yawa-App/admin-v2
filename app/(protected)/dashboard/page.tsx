@@ -13,7 +13,10 @@ import {
 import { Sidebar } from '@/components/sidebar'
 import { StatCard } from '@/components/stat-card'
 import {
+  RegisteredStatesChart,
   SituationalReportChart,
+  TopReportsChart,
+  TopRespondersChart,
   TransactionHistoryChart
 } from '@/components/charts'
 import {
@@ -27,8 +30,8 @@ import {
 
 export default function Dashboard () {
   return (
-    <div className='flex min-h-screen'>
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className='flex-1 space-y-8 p-8 pt-6'>
         <div className='flex items-center justify-between'>
           <div>
@@ -110,7 +113,12 @@ export default function Dashboard () {
           <SituationalReportChart />
           <TransactionHistoryChart />
         </div>
+        <div className='grid gap-4 md:grid-cols-3'>
+          <TopReportsChart />
+          <TopRespondersChart />
+          <RegisteredStatesChart />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

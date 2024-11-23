@@ -57,8 +57,8 @@ export default function ProfileSettings() {
   }
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className="flex-1 space-y-8 p-8 pt-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-gray-700">Profile Settings</h2>
@@ -208,7 +208,7 @@ export default function ProfileSettings() {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </>
   )
 }
 

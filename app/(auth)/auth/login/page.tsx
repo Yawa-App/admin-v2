@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
 import { useAuth } from '@/components/hooks/useAuth'
+import Image from 'next/image'
+import yawaLogo from '../../../../public/logoWhite.png'
 
 export default function Example () {
   const { handlelogin, isLoading, error, isError, data } = useAuth()
@@ -25,9 +27,11 @@ export default function Example () {
         */}
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-          <img
+          <Image
             alt='Yawa Enterprise Solutions'
-            src='https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600'
+            src={yawaLogo}
+            width={100}
+            height={100}
             className='mx-auto h-10 w-auto'
           />
           <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>

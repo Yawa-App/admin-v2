@@ -159,17 +159,19 @@ function Admins () {
   const [currentPage, setCurrentPage] = useState(1)
 
   const usersPerPage = 5
-  // const totalPages = Math.ceil(users.length / usersPerPage)
+  const totalPages = Math.ceil(users.length / usersPerPage)
 
   const indexOfLastUser = currentPage * usersPerPage
   const indexOfFirstUser = indexOfLastUser - usersPerPage
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
 
-  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  function paginate(pageNumber: number): void {
+    setCurrentPage(pageNumber)
+  }
 
   return (
-    <div className='flex min-h-screen'>
-      <Sidebar />
+    <>
+      {/* <Sidebar /> */}
       <div className='flex-1 space-y-8 p-8 pt-6'>
         <div className='flex items-center justify-between'>
           <div className='flex items-start justify-start flex-col gap-4'>
@@ -298,25 +300,25 @@ function Admins () {
           </Table>
         </div>
 
-        {/* <Pagination>
+        <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
+              <PaginationPrevious className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
+            {[(totalPages)].map((_, index) => (
+              <PaginationItem key={index} className=' text-gray-800 px-2 py-1 rounded-md mx-2'>
                 <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
                   {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
+              <PaginationNext className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
             </PaginationItem>
           </PaginationContent>
-        </Pagination> */}
+        </Pagination>
       </div>
-    </div>
+    </>
   )
 }
 
