@@ -1,8 +1,21 @@
+'use client'
+import { useState } from 'react'
+import { useAuth } from '@/components/hooks/useAuth'
 
-export default function Example() {
-    return (
-      <>
-        {/*
+export default function Example () {
+  const { handlelogin, isLoading, error, isError, data } = useAuth()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    await handlelogin(email, password)
+  }
+
+  return (
+    <>
+      {/*
           This example requires updating your template:
   
           ```
@@ -10,81 +23,119 @@ export default function Example() {
           <body class="h-full">
           ```
         */}
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-              alt="Yawa Enterprise Solutions"
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-              className="mx-auto h-10 w-auto"
-            />
-            <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
-              Yawa Enterprise Solutions
-            </h2>
-            <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
-              Sign in
-            </h2>
-          </div>
-  
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
-                  />
-                </div>
+      <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
+        <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
+          <img
+            alt='Yawa Enterprise Solutions'
+            src='https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600'
+            className='mx-auto h-10 w-auto'
+          />
+          <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
+            Yawa Enterprise Solutions
+          </h2>
+          <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
+            Sign in
+          </h2>
+        </div>
+
+        <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
+          <form onSubmit={handleSubmit} className='space-y-6'>
+            <div>
+              <label
+                htmlFor='email'
+                className='block text-sm/6 font-medium text-gray-900'
+              >
+                Email address
+              </label>
+              <div className='mt-2'>
+                <input
+                  id='email'
+                  name='email'
+                  type='email'
+                  required
+                  autoComplete='email'
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className='block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                />
               </div>
-  
-              <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
-                    Password
-                  </label>
-                  <div className="text-sm">
-                    <a href="/auth/forget-password" className="font-semibold text-[#03BDE9] hover:text-[#03BDE9]">
-                      Forgot password?
-                    </a>
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                    className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            </div>
+
+            <div>
+              <div className='flex items-center justify-between'>
+                <label
+                  htmlFor='password'
+                  className='block text-sm/6 font-medium text-gray-900'
                 >
-                  Sign in
-                </button>
+                  Password
+                </label>
+                <div className='text-sm'>
+                  <a
+                    href='/auth/forget-password'
+                    className='font-semibold text-[#03BDE9] hover:text-[#03BDE9]'
+                  >
+                    Forgot password?
+                  </a>
+                </div>
               </div>
-            </form>
-  
-            {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
+              <div className='mt-2'>
+                <input
+                  id='password'
+                  name='password'
+                  type='password'
+                  required
+                  autoComplete='current-password'
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  className='block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type='submit'
+                className={`flex w-full justify-center rounded-md bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                  isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <svg
+                    className='animate-spin h-5 w-5 text-white'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                  >
+                    <circle
+                      className='opacity-25'
+                      cx='12'
+                      cy='12'
+                      r='10'
+                      stroke='currentColor'
+                      strokeWidth='4'
+                    ></circle>
+                    <path
+                      className='opacity-75'
+                      fill='currentColor'
+                      d='M4 12a8 8 0 018-8v8H4z'
+                    ></path>
+                  </svg>
+                ) : (
+                  'Sign in'
+                )}
+              </button>
+            </div>
+          </form>
+
+          {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
               Not a member?{' '}
               <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                 Start a 14 day free trial
               </a>
             </p> */}
-          </div>
         </div>
-      </>
-    )
-  }
-  
+      </div>
+    </>
+  )
+}
