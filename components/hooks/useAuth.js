@@ -25,6 +25,7 @@ export const useAuth = () => {
             dispatch(setIsAuth(data))
             localStorage.setItem('accessToken', data.token);
             console.log("dashboard")
+            // console.log(data)
             router.push('/');
         } catch (error) {
             console.log(error)
@@ -32,7 +33,6 @@ export const useAuth = () => {
 
         // dispatch(setCredentials({ ...userData, user: email }));
     }
-
 
 
     return {

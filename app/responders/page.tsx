@@ -12,16 +12,7 @@ import {
 import { responders } from '@/data/data'
 import React from 'react'
 import { Sidebar } from '@/components/sidebar'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+
 
 function Responders() {
   // const [currentPage, setCurrentPage] = useState(1)
@@ -45,45 +36,6 @@ function Responders() {
           <p className="text-md text-gray-500">Manage responders on Yawa here</p>
         </div>
 
-        <>
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite a Responder</button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle className="text-lg font-bold text-gray-700">Invite a Responder</DialogTitle>
-                <DialogDescription className="text-sm/6 text-gray-500">
-                  Make changes to your profile here. Click save when you&apos;re done.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex flex-col gap-4 py-4">
-                <div className="flex justify-start items-center flex-col gap-4 text-left">
-                  <p className="text-sm font-medium text-gray-700">
-                    Name
-                  </p>
-                  <Input
-                    id="name"
-                    className="col-span-3 text-sm/6 text-gray-500"
-                  />
-                </div>
-                <div className="flex justify-start items-center flex-col gap-4 text-left">
-                  <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    className="col-span-3 text-sm/6 text-gray-500"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <button type="submit" className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite</button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </>
       </div>
 
         <div className="rounded-md border">
@@ -104,7 +56,7 @@ function Responders() {
               {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" width={50} height={50} />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>

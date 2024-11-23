@@ -1,12 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight
-} from 'lucide-react'
+import Image from 'next/image'
 import { Sidebar } from '@/components/sidebar'
 import {
   Table,
@@ -17,15 +12,7 @@ import {
   TableRow
 } from '@/components/ui/table'
 import { useGetUsersQuery } from '@/components/features/app/userSlide'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious
-} from '@/components/ui/pagination'
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 
 // This is mock data. In a real application, you'd fetch this from an API.
 
@@ -51,6 +38,10 @@ function Users () {
   // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   console.log(data)
+
+  function paginate(pageNumber: number): void {
+    setCurrentPage(pageNumber)
+  }
 
   return (
     <div className='flex min-h-screen'>
@@ -94,16 +85,18 @@ function Users () {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers?.map((user: any) => (
-                <TableRow key={user.id}>
+              {currentUsers?.map((user: any, index: number) => (
+                <TableRow key={user.id || index}>
                   <TableCell>
-                    <img
-                      src={user?.picture}
+                    <Image
+                      src={user?.picture || '/path/to/placeholder/image.png'}
                       alt={`${user?.name}'s profile`}
-                      className='h-10 w-10 rounded-full'
+                      className='rounded-full w-10 h-10'
+                      width={30}
+                      height={30}
                     />
                   </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
+                  <TableCell className='text-sm text-gray-500 capitalize'>
                     {user?.name}
                   </TableCell>
                   <TableCell className='text-sm text-gray-500'>
@@ -122,7 +115,11 @@ function Users () {
                     {user?.safetyCircle}
                   </TableCell>
                   <TableCell className='text-sm text-gray-500'>
-                    {user?.createdAt}
+                    {new Date(user.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
                   </TableCell>
                 </TableRow>
               ))}
@@ -130,12 +127,12 @@ function Users () {
           </Table>
         </div>
 
-        {/* <Pagination>
+        <Pagination>
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
+            {[(totalPages)].map((_, index) => (
               <PaginationItem key={index}>
                 <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
                   {index + 1}
@@ -146,7 +143,7 @@ function Users () {
               <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
             </PaginationItem>
           </PaginationContent>
-        </Pagination> */}
+        </Pagination>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Sidebar } from "@/components/sidebar"
 import {
   Table,
@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { BASEURLAPI } from '@/components/utils/api';
 
 import { agencies } from '@/data/data'
 import {
@@ -22,14 +23,97 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
   import { Input } from "@/components/ui/input"
+  import { useCreateagencyMutation, useGetAllAgencyQuery } from '@/components/features/app/agencyApi'
+import { useToast } from '@/hooks/use-toast'
+import { useGetcategoriesQuery } from '@/components/features/app/authSlide';
+
+const MultiSelect = ({ 
+  options, 
+  selectedValues, 
+  onChange 
+}: {
+  options: Array<{ _id: string, name: string }>,
+  selectedValues: string[],
+  onChange: (values: string[]) => void
+}) => {
+  const handleChange = (value: string) => {
+    if (selectedValues.includes(value)) {
+      onChange(selectedValues.filter((id: string) => id !== value)); // Remove value if already selected
+    } else {
+      onChange([...selectedValues, value]); // Add value if not selected
+    }
+  };
+
+  return (
+    <div className="relative">
+      {/* <button className="w-full border-black text-sm/6 text-gray-500">
+        Select categories
+      </button> */}
+      <div className="flex gap-2 flex-wrap">
+        {options.map((option) => (
+          <label key={option._id} className="flex items-center p-2 text-gray-800">
+            <input
+              type="checkbox"
+              value={option._id}
+              checked={selectedValues.includes(option._id)}
+              onChange={() => handleChange(option._id)}
+              className="mr-2 text-gray-800"
+            />
+            {option.name}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 function Agency() {
   // const [currentPage, setCurrentPage] = useState(1)
-  const usersPerPage = 5
+  const { toast } = useToast()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [createAgency, { isLoading, isError }] = useCreateagencyMutation()
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
 
-  // const indexOfLastUser = currentPage * usersPerPage
-  // const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const usersPerPage = 5
   const currentUsers = agencies.slice(0, usersPerPage)
+  const {
+    data
+    // isLoading,
+    // isSuccess,
+    // isError,
+    // error,
+  } = useGetcategoriesQuery({})
+  const {
+    data: agencyData
+    // isLoading,
+    // isSuccess,
+    // isError,
+    // error,
+  } = useGetAllAgencyQuery({})
+
+  const currentAgency = agencyData?.agencies.slice(0, usersPerPage) || []
+
+
+
+  const handleInvite = async () => {
+    try {
+      await createAgency({ name, email, category: selectedCategoryIds }).unwrap(); // Include categoryIds
+      toast({
+        title: "Agency Invited",
+        description: "Agency invited successfully",
+      });
+      setName('');
+      setEmail('');
+      setSelectedCategoryIds([]); // Reset selected categories
+    } catch (error) {
+      toast({
+        title: `${error}`,
+        description: "Failed to invite state.",
+      })
+      console.log('Failed to invite state:', error);
+    }
+  };
 
 
   return (
@@ -44,43 +128,58 @@ function Agency() {
         </div>
 
         <>
-            <Dialog>
-                <DialogTrigger asChild>
-                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite an Agency</button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle className="text-lg font-bold text-gray-700">Invite an Agency</DialogTitle>
-                    <DialogDescription className="text-sm/6 text-gray-500">
-                    Make changes to your profile here. Click save when you&apos;re done.
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="flex flex-col gap-4 py-4">
-                    <div className="flex justify-start items-center flex-col gap-4 text-left">
-                    <p className="text-sm font-medium text-gray-700">
+          <Dialog>
+              <DialogTrigger asChild>
+              <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite an Agency</button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[525px]">
+              <DialogHeader>
+                  <DialogTitle className="text-lg font-bold text-gray-700">Invite an Agency</DialogTitle>
+                  <DialogDescription className="text-sm/6 text-gray-500">
+                  Make changes to your profile here. Click save when you&apos;re done.
+                  </DialogDescription>
+              </DialogHeader>
+              <div className="flex flex-col gap-4 py-4">
+                  <div className="flex justify-start items-center flex-col gap-4 text-left">
+                    <label className="text-sm font-medium text-gray-700 self-start">
                         Name
-                    </p>
+                    </label>
                     <Input
-                        id="name"
-                        className="col-span-3 text-sm/6 text-gray-500"
+                      id="name"
+                      type='text'
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="col-span-3 text-sm/6 text-gray-500"
                     />
-                    </div>
-                    <div className="flex justify-start items-center flex-col gap-4 text-left">
-                    <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700">
+                  </div>
+                  <div className="flex justify-start items-center flex-col gap-4 text-left">
+                    <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700 self-start">
                         Email Address
                     </label>
                     <Input
                         id="email"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="col-span-3 text-sm/6 text-gray-500"
                     />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <button type="submit" className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite</button>
-                </DialogFooter>
-                </DialogContent>
-            </Dialog>
+                  </div>
+                  <div className="flex justify-start items-center flex-col gap-4 text-left">
+                  <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700 self-start">
+                        Categories
+                    </label>
+                  <MultiSelect
+                    options={data?.data || []}
+                    selectedValues={selectedCategoryIds}
+                    onChange={setSelectedCategoryIds}
+                  />
+                  </div>
+              </div>
+              <DialogFooter>
+                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Invite'}</button>
+              </DialogFooter>
+              </DialogContent>
+          </Dialog>
         </>
       </div>
 
@@ -99,20 +198,27 @@ function Agency() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <img src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+              {currentAgency.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="text-center text-gray-500">
+                    No agencies found.
                   </TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.phone}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.state}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.lga}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.safetyCircle}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.createdAt}</TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                currentAgency.map((agency: any) => (
+                  <TableRow key={agency.id}>
+                    <TableCell>
+                      <img src={agency.image} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    </TableCell>
+                    <TableCell className="text-sm text-gray-500 capitalize">{agency.name}</TableCell>
+                    <TableCell className="text-sm text-gray-500">{agency.email}</TableCell>
+                    <TableCell className="text-sm text-gray-500">{agency.phone}</TableCell>
+                    <TableCell className="text-sm text-gray-500">{agency.state}</TableCell>
+                    <TableCell className="text-sm text-gray-500">{agency.lga}</TableCell>
+                    <TableCell className="text-sm text-gray-500">{agency.createdAt}</TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </div>

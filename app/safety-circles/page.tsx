@@ -67,7 +67,7 @@ function Circles() {
               {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    <Image src={user.image} alt={`${user.name}'s profile`} width={30} height={30} className="h-10 w-10 rounded-full" />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>

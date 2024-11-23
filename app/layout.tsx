@@ -5,6 +5,8 @@ import './globals.css'
 import { Provider } from 'react-redux'
 // import { PersistGate } from 'redux-persist/integration/react'
 import { store } from '@/components/features/api/store'
+import { Sidebar } from '@/components/sidebar'
+import { Toaster } from '@/components/ui/toaster'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -28,6 +30,8 @@ export default function RootLayout ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider store={store}>
+          <Toaster />
+          {/* <Sidebar /> */}
           {/* <PersistGate loading={null} persistor={persistor}> */}
           {children}
           {/* </PersistGate> */}

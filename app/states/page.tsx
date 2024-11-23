@@ -3,6 +3,8 @@
 import Image from "next/image"
 import React from 'react'
 import { Sidebar } from "@/components/sidebar"
+// import { useToast } from "@/components/ui/use-toast"
+
 import {
   Table,
   TableBody,
@@ -21,34 +23,43 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-
-// This is mock data. In a real application, you'd fetch this from an API.
-const users = [
-  { id: 1, name: "John Doe", email: "john@example.com", phone: "+1234567890", safetyCircle: "Family", image: "/profile.png?height=40&width=40", createdAt: "2024-01-01", state: "Lagos", lga: "Ikeja" },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", phone: "+1987654321", safetyCircle: "Friends", image: "/profile.png?height=40&width=40", createdAt: "2024-01-02", state: "Lagos", lga: "Ikeja" },
-  { id: 3, name: "Alice Johnson", email: "alice@example.com", phone: "+1122334455", safetyCircle: "Work", image: "/profile.png?height=40&width=40", createdAt: "2024-01-03", state: "Lagos", lga: "Ikeja" },
-  { id: 4, name: "Bob Williams", email: "bob@example.com", phone: "+1555666777", safetyCircle: "Neighbors", image: "/profile.png?height=40&width=40", createdAt: "2024-01-04", state: "Lagos", lga: "Ikeja" },
-  { id: 5, name: "Charlie Brown", email: "charlie@example.com", phone: "+1999888777", safetyCircle: "School", image: "/profile.png?height=40&width=40", createdAt: "2024-01-05", state: "Lagos", lga: "Ikeja" },
-  { id: 6, name: "Diana Prince", email: "diana@example.com", phone: "+1777888999", safetyCircle: "Family", image: "/profile.png?height=40&width=40", createdAt: "2024-01-06", state: "Lagos", lga: "Ikeja" },
-  { id: 7, name: "Ethan Hunt", email: "ethan@example.com", phone: "+1444555666", safetyCircle: "Work", image: "/profile.png?height=40&width=40", createdAt: "2024-01-07", state: "Lagos", lga: "Ikeja" },
-  { id: 8, name: "Fiona Apple", email: "fiona@example.com", phone: "+1333222111", safetyCircle: "Friends", image: "/profile.png?height=40&width=40", createdAt: "2024-01-08", state: "Lagos", lga: "Ikeja" },
-  { id: 9, name: "George Lucas", email: "george@example.com", phone: "+1111222333", safetyCircle: "Work", image: "/profile.png?height=40&width=40", createdAt: "2024-01-09", state: "Lagos", lga: "Ikeja" },
-  { id: 10, name: "Hannah Montana", email: "hannah@example.com", phone: "+1888999000", safetyCircle: "School", image: "/profile.png?height=40&width=40", createdAt: "2024-01-10", state: "Lagos", lga: "Ikeja" },
-  // Add more users as needed...
-]
-
+import { useDispatch } from 'react-redux'
+import { useCreatestateMutation, useGetAllStatesQuery } from '@/components/features/app/stateApi'
+import { useState } from 'react'
+import { toast, useToast } from "@/hooks/use-toast"
 
 
 function States() {
-  // const [currentPage, setCurrentPage] = useState(1)
-  const usersPerPage = 5
-  // const totalPages = Math.ceil(users.length / usersPerPage)
+  const {
+    data,
+    // isLoading,
+    // isError,
+  } = useGetAllStatesQuery({})
 
-    // const indexOfLastUser = currentPage * usersPerPage
-    // const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = users.slice(0, usersPerPage)
+  const usersPerPage = 10
+  const { toast } = useToast()
 
-  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  // Update currentUsers to use the fetched data
+  const currentUsers = data?.states.slice(0, usersPerPage) || []
+
+  const dispatch = useDispatch()
+  const [createState, { isLoading, isError }] = useCreatestateMutation()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+
+  const handleInvite = async () => {
+    try {
+      await createState({ name, email }).unwrap()
+      toast({
+        title: "State Invited",
+        description: "State invited successfully",
+      })
+      setName('')
+      setEmail('')
+    } catch (error) {
+      console.log('Failed to invite state:', error)
+    }
+  }
 
   return (
     <div className="flex min-h-screen">
@@ -80,6 +91,8 @@ function States() {
                   </p>
                   <Input
                     id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="col-span-3 text-sm/6 text-gray-500"
                   />
                 </div>
@@ -90,12 +103,17 @@ function States() {
                   <Input
                     id="email"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="col-span-3 text-sm/6 text-gray-500"
                   />
                 </div>
               </div>
               <DialogFooter>
-                <button type="submit" className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite</button>
+                <button type="button" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>
+                  {isLoading ? 'Inviting...' : 'Invite'}
+                </button>
+                {isError && <p className="text-red-500">Failed to invite state. Please try again.</p>}
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -107,30 +125,41 @@ function States() {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Profile</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Full Name</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State Name</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Email</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Phone Number</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">LGA</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Safety Circle</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Created At</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+              {currentUsers.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center text-gray-500">
+                    No states found.
                   </TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.phone}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.state}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.lga}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.safetyCircle}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.createdAt}</TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                currentUsers.map((user: {
+                _id: string;
+                image: string;
+                name: string;
+                email: string;
+                createdAt: string;
+              }) => (
+                <TableRow key={user._id}>
+                  <TableCell>
+                    <Image src={user?.image || '/path/to/placeholder/image.png'} alt={`${user.name}'s profile`} className="rounded-full" width={50} height={50} />
+                  </TableCell>
+                  <TableCell className="text-sm text-gray-500 capitalize">{user.name}</TableCell>
+                  <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
+                  <TableCell className="text-sm text-gray-500">
+                    {new Date(user.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </TableCell>
+                </TableRow>
+              )))}
             </TableBody>
           </Table>
         </div>

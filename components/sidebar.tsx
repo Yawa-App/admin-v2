@@ -37,7 +37,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                 hover:text-gray-900`}
             >
               <Users className="h-4 w-4" />
-              <span className="text-md font-medium">User</span>
+              <span className="text-md font-medium">Users</span>
             </Link>
             <Link
               href="/safety-circles"
@@ -73,7 +73,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                 hover:text-gray-900`}
             >
               <Radio className="h-4 w-4" />
-              <span className="text-md font-medium">First Responders</span>
+              <span className="text-md font-medium">LGAs</span>
             </Link>
             <Link
               href="/admins"
