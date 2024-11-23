@@ -1,3 +1,4 @@
+import Image from "next/image"
 import {
     InputOTP,
     InputOTPGroup,
@@ -10,7 +11,7 @@ export default function Example() {
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
+            <Image
               alt="Yawa Enterprise Solutions"
               src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
               className="mx-auto h-10 w-auto"

@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Users } from 'lucide-react'
 import { Sidebar } from "@/components/sidebar"
 import {
   Table,
@@ -11,17 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
 
-import { agencies, users } from '@/data/data'
+import { agencies } from '@/data/data'
 import {
     Dialog,
     DialogContent,
@@ -34,15 +24,13 @@ import {
   import { Input } from "@/components/ui/input"
 
 function Agency() {
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
   const usersPerPage = 5
-  const totalPages = Math.ceil(agencies.length / usersPerPage)
 
-  const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = agencies.slice(indexOfFirstUser, indexOfLastUser)
+  // const indexOfLastUser = currentPage * usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const currentUsers = agencies.slice(0, usersPerPage)
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
     <div className="flex min-h-screen">
@@ -64,7 +52,7 @@ function Agency() {
                 <DialogHeader>
                     <DialogTitle className="text-lg font-bold text-gray-700">Invite an Agency</DialogTitle>
                     <DialogDescription className="text-sm/6 text-gray-500">
-                    Make changes to your profile here. Click save when you're done.
+                    Make changes to your profile here. Click save when you&apos;re done.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col gap-4 py-4">
@@ -129,23 +117,6 @@ function Agency() {
           </Table>
         </div>
 
-        {/* <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
-            </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
-                <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination> */}
       </div>
     </div>
   )

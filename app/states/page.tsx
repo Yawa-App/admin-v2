@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState } from 'react'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
+import Image from "next/image"
+import React from 'react'
 import { Sidebar } from "@/components/sidebar"
 import {
   Table,
@@ -11,15 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
 import {
   Dialog,
   DialogContent,
@@ -49,15 +40,15 @@ const users = [
 
 
 function States() {
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
   const usersPerPage = 5
-  const totalPages = Math.ceil(users.length / usersPerPage)
+  // const totalPages = Math.ceil(users.length / usersPerPage)
 
-  const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
+    // const indexOfLastUser = currentPage * usersPerPage
+    // const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const currentUsers = users.slice(0, usersPerPage)
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
     <div className="flex min-h-screen">
@@ -74,12 +65,12 @@ function States() {
             <DialogTrigger asChild>
               <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite a State</button>
             </DialogTrigger>
-            
+
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle className="text-lg font-bold text-gray-700">Invite a State</DialogTitle>
                 <DialogDescription className="text-sm/6 text-gray-500">
-                  Make changes to your profile here. Click save when you're done.
+                  Make changes to your profile here. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <div className="flex flex-col gap-4 py-4">
@@ -129,7 +120,7 @@ function States() {
               {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <img src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>

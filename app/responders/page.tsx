@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import {
   Table,
   TableBody,
@@ -9,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { responders } from '@/data/data'
-import React, { useState } from 'react'
+import React from 'react'
 import { Sidebar } from '@/components/sidebar'
 import {
   Dialog,
@@ -23,15 +24,15 @@ import {
 import { Input } from "@/components/ui/input"
 
 function Responders() {
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
   const usersPerPage = 5
-  const totalPages = Math.ceil(responders.length / usersPerPage)
+  // const totalPages = Math.ceil(responders.length / usersPerPage)
 
-  const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = responders.slice(indexOfFirstUser, indexOfLastUser)
+      // const indexOfLastUser = currentPage * usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const currentUsers = responders.slice(0, usersPerPage)
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
   
   return (
     <div className="flex min-h-screen">
@@ -53,7 +54,7 @@ function Responders() {
               <DialogHeader>
                 <DialogTitle className="text-lg font-bold text-gray-700">Invite a Responder</DialogTitle>
                 <DialogDescription className="text-sm/6 text-gray-500">
-                  Make changes to your profile here. Click save when you're done.
+                  Make changes to your profile here. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <div className="flex flex-col gap-4 py-4">
@@ -103,7 +104,7 @@ function Responders() {
               {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <img src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
@@ -118,23 +119,6 @@ function Responders() {
           </Table>
         </div>
 
-        {/* <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
-            </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
-                <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination> */}
       </div>
     </div>
   )

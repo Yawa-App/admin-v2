@@ -1,6 +1,6 @@
 "use client"
 
-import { Users, Shield, Users2, AlertTriangle, Bell, Building } from 'lucide-react'
+import { Users, Shield, Users2, AlertTriangle, Bell, Building, MapPinHouse, LifeBuoy } from 'lucide-react'
 import { Sidebar } from "@/components/sidebar"
 import { StatCard } from "@/components/stat-card"
 import { SituationalReportChart, TransactionHistoryChart } from "@/components/charts"
@@ -74,12 +74,7 @@ export default function Dashboard() {
             label="SOS Prompts"
           />
           <StatCard
-            icon={<Building className="h-6 w-6 text-blue-500" />}
-            value="5"
-            label="Safety Org. Accounts"
-          />
-          <StatCard
-            icon={<Building className="h-6 w-6 text-blue-500" />}
+            icon={<MapPinHouse className="h-6 w-6 text-blue-500" />}
             value="25"
             label="States"
           />
@@ -89,7 +84,7 @@ export default function Dashboard() {
             label="Agencies"
           />
           <StatCard
-            icon={<Building className="h-6 w-6 text-blue-500" />}
+            icon={<LifeBuoy className="h-6 w-6 text-blue-500" />}
             value="104"
             label="Responders"
           />

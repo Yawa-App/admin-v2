@@ -1,15 +1,11 @@
 "use client";
 import React from "react";
 // components/Tabs.tsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Tabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<number>(1);
   const [newSkill, setNewSkill] = useState<string>("");
 
-  const handleTabChange = (tabNumber: number) => {
-    setActiveTab(tabNumber);
-  };
 
   const submitNewSkill = () => {
     // addNewSkill({ name: newSkill }).then((res) => {

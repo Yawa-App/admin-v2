@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState } from 'react'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
+import Image from "next/image"
+import React from 'react'
 import { Sidebar } from "@/components/sidebar"
 import {
   Table,
@@ -11,15 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
+
 
 // This is mock data. In a real application, you'd fetch this from an API.
 const users = [
@@ -39,15 +31,15 @@ const users = [
 
 
 function Users() {
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
   const usersPerPage = 5
-  const totalPages = Math.ceil(users.length / usersPerPage)
+  // const totalPages = Math.ceil(users.length / usersPerPage)
 
-  const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
+  // const indexOfLastUser = currentPage * usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const currentUsers = users.slice(0, usersPerPage)
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
     <div className="flex min-h-screen">
@@ -76,7 +68,7 @@ function Users() {
               {currentUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <img src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
+                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>

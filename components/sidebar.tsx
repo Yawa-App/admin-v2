@@ -3,9 +3,7 @@ import Link from "next/link"
 import { cn } from "../lib/utils"
 import { usePathname } from 'next/navigation';
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export function Sidebar({ className }: SidebarProps) {
+export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
     const pathname = usePathname();
     const isActive = (path: string) => pathname === path;
 
