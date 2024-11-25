@@ -3,17 +3,25 @@ import React from "react";
 // components/Tabs.tsx
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const Tabs: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState('')
-
   const { handleCreateCategory } = useAuth();
+  const { toast } = useToast()
 
 
   const submitNewCategory = async (event: React.FormEvent) => {
     event.preventDefault()
     await handleCreateCategory(name, description)
+    toast({
+      description: "Report category created successfully",
+      style: {
+          background: '#000',
+          color: '#fff',
+      }
+    })
     setName('')
     setDescription('')
   };

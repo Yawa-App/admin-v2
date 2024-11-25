@@ -17,7 +17,13 @@ export const stateApi = apiSlice.injectEndpoints({
                 params: { page: 1, limit: 50 },
             }),
         }),
+        getState: builder.query({
+            query: (stateId) => ({
+              url: `/api/admin/state/invite/${stateId}`,
+              method: 'GET',
+            }),
+        }),
     }),
 });
 
-export const { useCreatestateMutation, useGetAllStatesQuery } = stateApi;
+export const { useCreatestateMutation, useGetAllStatesQuery, useGetStateQuery } = stateApi;

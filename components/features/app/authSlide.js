@@ -42,7 +42,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: '/api/admin/category',
         method: 'GET',
-
       }),
     }),
     

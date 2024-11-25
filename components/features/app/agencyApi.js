@@ -17,7 +17,13 @@ export const agencyApi = apiSlice.injectEndpoints({
                 params: { page: 1, limit: 50 },
             }),
         }),
+        getAgency: builder.query({
+            query: (agencyId) => ({
+              url: `/api/admin/agency/invite/${agencyId}`,
+              method: 'GET',
+            }),
+        }),
     }),
 });
 
-export const { useCreateagencyMutation, useGetAllAgencyQuery } = agencyApi;
+export const { useCreateagencyMutation, useGetAllAgencyQuery, useGetAgencyQuery } = agencyApi;

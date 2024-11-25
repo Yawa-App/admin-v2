@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Pagination, PaginationLink, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 
 // This is mock data. In a real application, you'd fetch this from an API.
 const users = [
@@ -30,14 +31,14 @@ const users = [
 
 function Circles() {
   const [currentPage, setCurrentPage] = useState(1)
-  const usersPerPage = 5
-  // const totalPages = Math.ceil(users.length / usersPerPage)
+  const usersPerPage = 10
+  const totalPages = Math.ceil(users.length / usersPerPage)
 
   const indexOfLastUser = currentPage * usersPerPage
   const indexOfFirstUser = indexOfLastUser - usersPerPage
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
 
-  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
     <>
@@ -53,12 +54,9 @@ function Circles() {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Profile</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Full Name</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Email</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Phone Number</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">LGA</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Safety Circle</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Circle Name</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Admin</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">No of Members</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Created At</TableHead>
               </TableRow>
             </TableHeader>
@@ -71,9 +69,6 @@ function Circles() {
                   <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.phone}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.state}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.lga}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.safetyCircle}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.createdAt}</TableCell>
                 </TableRow>
               ))}
@@ -81,23 +76,23 @@ function Circles() {
           </Table>
         </div>
 
-        {/* <Pagination>
+        <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
+              <PaginationPrevious className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
+            {[(totalPages)].map((_, index) => (
+              <PaginationItem key={index} className=' text-gray-800 px-2 py-1 rounded-md mx-2'>
                 <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
                   {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
+              <PaginationNext className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
             </PaginationItem>
           </PaginationContent>
-        </Pagination> */}
+        </Pagination>
       </div>
     </>
   )

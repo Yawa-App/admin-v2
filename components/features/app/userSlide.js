@@ -9,7 +9,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
         params: { page: 1, limit: 30 },
       }),
     }),
+    getUser: builder.query({
+      query: (userId) => ({
+        url: `/api/admin/users/${userId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery } = authApiSlice;
+export const { useGetUsersQuery, useGetUserQuery } = authApiSlice;

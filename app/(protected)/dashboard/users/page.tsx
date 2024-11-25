@@ -14,11 +14,13 @@ import {
 import { useGetUsersQuery } from '@/components/features/app/userSlide'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 import profile from '../../../../public/profile.png'
+import { useRouter } from 'next/navigation';
 
 // This is mock data. In a real application, you'd fetch this from an API.
 
 function Users () {
   const [currentPage, setCurrentPage] = useState(1)
+  const router = useRouter();
   const {
     data
     // isLoading,
@@ -26,7 +28,7 @@ function Users () {
     // isError,
     // error,
   } = useGetUsersQuery({})
-  const usersPerPage = 10
+  const usersPerPage = 20
   const totalPages = Math.ceil(data?.data?.totalUsers / usersPerPage)
 
   const indexOfLastUser = currentPage * usersPerPage
@@ -52,7 +54,7 @@ function Users () {
           <h2 className='text-3xl font-bold tracking-tight text-gray-700'>
             Users
           </h2>
-          <p className='text-md text-gray-500'>Manage users on Yawa here</p>
+          <p className='text-md text-gray-500'>Manage Users on Yawa here</p>
         </div>
 
         <div className='rounded-md border'>
@@ -81,7 +83,7 @@ function Users () {
                   Safety Circle
                 </TableHead>
                 <TableHead className='w-1/8 text-left text-md font-bold text-gray-700'>
-                  Created At
+                  Joined At
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -93,44 +95,53 @@ function Users () {
                   </TableCell>
                 </TableRow>
               ) : (
-                currentUsers?.map((user: any, index: number) => (
-                <TableRow key={user.id || index}>
-                  <TableCell>
-                    <Image
-                      src={user?.picture || profile}
-                      alt={`${user?.name}'s profile`}
-                      className='rounded-full w-10 h-10'
-                      width={30}
-                      height={30}
-                    />
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500 capitalize'>
-                    {user?.name}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {user?.email}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {user?.phoneNumber}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {user?.state}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {user?.lga}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {user?.safetyCircle}
-                  </TableCell>
-                  <TableCell className='text-sm text-gray-500'>
-                    {new Date(user.createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </TableCell>
-                </TableRow>
-              )))}
+                currentUsers?.map((user: any, index: number) => {
+                  
+                  return (
+                    <TableRow 
+                      key={user.id || index} 
+                      role='link' 
+                      className='cursor-pointer'
+                      onClick={() => router.push(`/dashboard/users/q?user=${user._id}`)}
+                    >
+                      <TableCell>
+                        <Image
+                          src={user?.picture || profile}
+                          alt={`${user?.name}'s profile`}
+                          className='rounded-full w-10 h-10'
+                          width={30}
+                          height={30}
+                        />
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500 capitalize'>
+                        {user?.name}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {user?.email}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {user?.phoneNumber}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {user?.state}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {user?.lga}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {user?.safetyCircle}
+                      </TableCell>
+                      <TableCell className='text-sm text-gray-500'>
+                        {new Date(user.createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
+              )}
             </TableBody>
           </Table>
         </div>

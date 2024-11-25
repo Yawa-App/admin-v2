@@ -29,19 +29,19 @@ import { useState } from 'react'
 import { useToast } from "@/hooks/use-toast"
 import profile from '../../../../public/coatofarm.jpg'
 import { Pagination, PaginationLink, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
-
+import { useRouter } from 'next/navigation';
 
 function States() {
   const { toast } = useToast()
   const [currentPage, setCurrentPage] = useState(1)
-
+  const router = useRouter();
   const {
     data,
     // isLoading,
     // isError,
   } = useGetAllStatesQuery({})
 
-  const usersPerPage = 10
+  const usersPerPage = 20
   const totalPages = Math.ceil(data?.data?.totalStates / usersPerPage)
   const indexOfLastUser = currentPage * usersPerPage
   const indexOfFirstUser = indexOfLastUser - usersPerPage
@@ -58,8 +58,12 @@ function States() {
     try {
       await createState({ name, email }).unwrap()
       toast({
-        title: "State Invited",
-        description: "State invited successfully",
+        title: "Invite sent!",
+        description: "State invited successfully", 
+        style: {
+          background: '#000',
+          color: '#fff',
+      }
       })
       setName('')
       setEmail('')
@@ -156,7 +160,9 @@ function States() {
                 email: string;
                 createdAt: string;
               }) => (
-                <TableRow key={user._id}>
+                <TableRow key={user._id} role='link' 
+                className='cursor-pointer'
+                onClick={() => router.push(`/dashboard/states/q?state=${user._id}`)}>
                   <TableCell>
                     <Image src={user?.image || profile } alt={`${user.name}'s profile`} className="rounded-full" width={50} height={50} />
                   </TableCell>
