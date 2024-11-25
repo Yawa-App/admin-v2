@@ -16,6 +16,28 @@ export const authApiSlice = apiSlice.injectEndpoints({
         return response
       },
     }),
+    emailVerification: builder.mutation({
+      query: (data) => ({
+        url: '/api/admin/email/verification',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    createPassword: builder.mutation({
+      query: (data) => ({
+        url: '/api/admin/create/password',
+        method: 'POST',
+        body: data,
+      }),
+
+    }),
+    createCategories: builder.mutation({
+      query: (data) => ({
+        url: '/api/admin/category',
+        method: 'POST',
+        body: data,
+      })
+    }),
     getcategories: builder.query({
       query: () => ({
         url: '/api/admin/category',
@@ -23,7 +45,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
       }),
     }),
+    
   }),
 });
 
-export const { useLoginMutation, useGetcategoriesQuery } = authApiSlice;
+export const { useLoginMutation, useGetcategoriesQuery, useCreateCategoriesMutation, useCreatePasswordMutation, useEmailVerificationMutation } = authApiSlice;

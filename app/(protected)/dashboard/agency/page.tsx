@@ -209,8 +209,8 @@ function Agency() {
                   </TableCell>
                 </TableRow>
               ) : (
-                currentAgency.map((agency: any) => (
-                  <TableRow key={agency.id}>
+                currentAgency.map((agency: any, index: number) => (
+                  <TableRow key={agency.id || index}>
                     <TableCell>
                       <Image src={profile} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
                     </TableCell>

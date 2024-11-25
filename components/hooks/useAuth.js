@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 
 import { useRouter } from 'next/navigation';
 import { setIsAuth } from '@/components/features/slide/authSlice';
-import { useLoginMutation } from '@/components/features/app/authSlide';
+import { useLoginMutation, useCreatePasswordMutation, useCreateCategoriesMutation  } from '@/components/features/app/authSlide';
 import { useToast } from '@/hooks/use-toast'
 
 export const useAuth = () => {
@@ -10,6 +10,8 @@ export const useAuth = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [login, { isLoading, error, isError, data }] = useLoginMutation();
+    const [createPassword] = useCreatePasswordMutation();
+    const [createCategory] = useCreateCategoriesMutation();
 
     // Ensure router is available
     if (!router) {
@@ -48,9 +50,62 @@ export const useAuth = () => {
         // dispatch(setCredentials({ ...userData, user: email }));
     }
 
+    const handleCreatePassword = async (email, password) => {
+        try {
+            const data = await createPassword({ email, password }).unwrap();
+            console.log(data)
+            toast({
+                // title: "Agency Invited",
+                description: "Password created successfully",
+                style: {
+                    background: '#000',
+                    color: '#fff',
+                }
+              });
+            router.push('/auth/login');
+        } catch (error) {
+            // if (error)
+            toast({
+                title: `${error.status}`,
+                description: `${error.data}`,
+                style: {
+                    background: '#000',
+                    color: '#fff',
+                }
+              });
+            console.log(error)
+        }
+    }
+
+    const handleCreateCategory = async (name, description) => {
+        try {
+
+           const data = await createCategory({name, description}).unwrap();
+           console.log(data)
+           toast({
+               description: "Report category created successfully",
+               style: {
+                   background: '#000',
+                   color: '#fff',
+               }
+           })
+        } catch (error) {
+            toast({
+                title: `${error.status}`,
+                description: `${error.data}`,
+                style: {
+                    background: '#000',
+                    color: '#fff',
+                }
+              });
+            console.log(error)
+        }
+    }
 
     return {
         handlelogin,
+        handleCreatePassword,
+        handleCreateCategory,
         isLoading, error, isError, data
     }
 }

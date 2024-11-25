@@ -1,6 +1,31 @@
 import Image from "next/image"
+import { useState } from "react"
+import { useToast } from "@/hooks/use-toast"
+import { useAuth } from "@/components/hooks/useAuth"
 
 export default function Example() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const { handleCreatePassword, isLoading} = useAuth();
+
+  const { toast } = useToast()
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (password !== confirmPassword) {
+      toast({
+        // title: "Agency Invited",
+        description: "Passwords do not match!",
+        style: {
+          background: '#000',
+          color: '#fff',
+        }
+      });
+      return;
+    }
+    await handleCreatePassword(email, password)
+  }
     return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -19,7 +44,25 @@ export default function Example() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor='email'
+                  className='block text-sm/6 font-medium text-gray-900'
+                >
+                  Email address
+                </label>
+                <div className='mt-2'>
+                  <input
+                    id='email'
+                    name='email'
+                    type='email'
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className='block w-full rounded-md border-0 py-3.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#03BDE9] sm:text-sm/6'
+                  />
+                </div>
+              </div>
               <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
@@ -33,7 +76,8 @@ export default function Example() {
                     type="password"
                     placeholder="Password"
                     required
-                    autoComplete="current-password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     className="block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                   />
                 </div>
@@ -51,7 +95,8 @@ export default function Example() {
                     type="password"
                     placeholder="Confirm Password"
                     required
-                    autoComplete="current-password"
+                    value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)}
                     className="block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                   />
                 </div>
