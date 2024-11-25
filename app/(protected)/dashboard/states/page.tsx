@@ -96,7 +96,7 @@ function States() {
                 <DialogHeader>
                   <DialogTitle className="text-lg font-bold text-gray-700">Invite a State</DialogTitle>
                   <DialogDescription className="text-sm/6 text-gray-500">
-                    Make changes to your profile here. Click save when you&apos;re done.
+                    Make sure you input all details before sending an invite. Click send when you&apos;re done.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col gap-4 py-4">
@@ -126,7 +126,7 @@ function States() {
                 </div>
                 <DialogFooter>
                   <button type="button" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>
-                    {isLoading ? 'Inviting...' : 'Invite'}
+                    {isLoading ? 'Inviting...' : 'Send Invite'}
                   </button>
                   {isError && <p className="text-red-500">Failed to invite state. Please try again.</p>}
                 </DialogFooter>

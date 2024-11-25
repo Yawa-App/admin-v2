@@ -24,6 +24,7 @@ import {
 import { useToast } from '@/hooks/use-toast'
 import { useGetcategoriesQuery } from '@/components/features/app/authSlide';
 import { Pagination, PaginationPrevious, PaginationLink, PaginationNext, PaginationContent, PaginationItem } from '@/components/ui/pagination';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 
 
@@ -46,9 +47,6 @@ const MultiSelect = ({
 
   return (
     <div className="relative">
-      {/* <button className="w-full border-black text-sm/6 text-gray-500">
-        Select categories
-      </button> */}
       <div className="flex gap-2 flex-wrap">
         {options.map((option) => (
           <label key={option._id} className="flex items-center p-2 text-gray-800">
@@ -70,6 +68,7 @@ const MultiSelect = ({
 function Agency() {
   const [currentPage, setCurrentPage] = useState(1)
   const { toast } = useToast()
+  const router = useRouter();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [createAgency, { isLoading, isError }] = useCreateagencyMutation()
@@ -141,7 +140,7 @@ function Agency() {
               <DialogHeader>
                   <DialogTitle className="text-lg font-bold text-gray-700">Invite an Agency</DialogTitle>
                   <DialogDescription className="text-sm/6 text-gray-500">
-                  Make changes to your profile here. Click save when you&apos;re done.
+                  Make sure you select a category when sending an invite. Click send when you&apos;re done.
                   </DialogDescription>
               </DialogHeader>
               <div className="flex flex-col gap-4 py-4">
@@ -181,7 +180,7 @@ function Agency() {
                   </div>
               </div>
               <DialogFooter>
-                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Invite'}</button>
+                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
               </DialogFooter>
               </DialogContent>
           </Dialog>
@@ -210,7 +209,11 @@ function Agency() {
                 </TableRow>
               ) : (
                 currentAgency.map((agency: any, index: number) => (
-                  <TableRow key={agency.id || index}>
+                  <TableRow key={agency._id || index}
+                  role='link'
+                  className='cursor-pointer'
+                  onClick={() => router.push(`/dashboard/agencies/q?agency=${agency?._id}`)}
+                  >
                     <TableCell>
                       <Image src={profile} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
                     </TableCell>

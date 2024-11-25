@@ -66,9 +66,9 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                 <span className="text-md font-medium">States</span>
               </Link>
               <Link
-                href="/dashboard/agency"
+                href="/dashboard/agencies"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-none 
-                  ${isActive("/dashboard/agency") ? 'bg-[#03bde914] text-[#03BDE9]' : 'text-gray-500'} 
+                  ${isActive("/dashboard/agencies") ? 'bg-[#03bde914] text-[#03BDE9]' : 'text-gray-500'} 
                   hover:text-gray-900`}
               >
                 <Building2 className="h-4 w-4" />
