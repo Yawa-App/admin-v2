@@ -27,6 +27,7 @@ import { useDispatch } from 'react-redux'
 import { useCreatestateMutation, useGetAllStatesQuery } from '@/components/features/app/stateApi'
 import { useState } from 'react'
 import { useToast } from "@/hooks/use-toast"
+import profile from '../../../../public/coatofarm.jpg'
 import { Pagination, PaginationLink, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 
 
@@ -157,7 +158,7 @@ function States() {
               }) => (
                 <TableRow key={user._id}>
                   <TableCell>
-                    <Image src={user?.image || '/path/to/placeholder/image.png'} alt={`${user.name}'s profile`} className="rounded-full" width={50} height={50} />
+                    <Image src={user?.image || profile } alt={`${user.name}'s profile`} className="rounded-full" width={50} height={50} />
                   </TableCell>
                   <TableCell className="text-sm text-gray-500 capitalize">{user.name}</TableCell>
                   <TableCell className="text-sm text-gray-500">{user.email}</TableCell>

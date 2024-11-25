@@ -18,13 +18,15 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-  import profile from '../../../../public/profile.png'
+  import profile from '../../../../public/coatofarm.jpg'
   import { Input } from "@/components/ui/input"
   import { useCreateagencyMutation, useGetAllAgencyQuery } from '@/components/features/app/agencyApi'
 import { useToast } from '@/hooks/use-toast'
 import { useGetcategoriesQuery } from '@/components/features/app/authSlide';
 import { Pagination, PaginationPrevious, PaginationLink, PaginationNext, PaginationContent, PaginationItem } from '@/components/ui/pagination';
 import Image from 'next/image'
+
+
 const MultiSelect = ({ 
   options, 
   selectedValues, 

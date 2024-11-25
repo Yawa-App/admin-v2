@@ -26,13 +26,21 @@ export const useAuth = () => {
             toast({
                 // title: "Agency Invited",
                 description: "Logged in successfully",
+                style: {
+                    background: '#000',
+                    color: '#fff'
+                }
               });
             router.push('/dashboard');
         } catch (error) {
             // if (error)
             toast({
-                // title: "Agency Invited",
-                description: "Error logging in",
+                title: `${error.status}`,
+                description: `${error.data.message}`,
+                style: {
+                    background: '#000',
+                    color: '#fff'
+                }
               });
             console.log(error)
         }
