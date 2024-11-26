@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation';
+import Image from 'next/image'
+import yawaLogo from '../public/logoWhite.png'
 
 export default function YawaEnterpriseCTA() {
     const router = useRouter();
@@ -9,7 +11,14 @@ export default function YawaEnterpriseCTA() {
   return (
     <section className="h-[100vh] bg-gradient-to-b from-white to-[#E6F8FC] py-16 md:py-24 text-gray-800 flex justify-end items-center">
       <div className="container mx-auto px-4 text-center flex justify-end items-center flex-col">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-800 leading-tight">
+      <Image
+            alt='Yawa Enterprise Solutions'
+            src={yawaLogo}
+            width={100}
+            height={100}
+            className='mx-auto h-10 w-auto mb-6'
+          />
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold my-6 text-gray-800 leading-tight">
           YAWA ENTERPRISE SOLUTION (YES)
         </h2>
         <p className="text-xl md:text-2xl font-semibold mb-8 text-gray-700">
@@ -45,7 +54,7 @@ export default function YawaEnterpriseCTA() {
         </div>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <Button 
-            onClick={() => router.push(`/auth/login`)}
+            onClick={() => router.push('/auth/login')}
             className="bg-[#03BDE9] hover:bg-[#029BC1] text-white font-bold py-3 px-6 rounded-full text-lg transition-colors duration-300"
           >
             Login

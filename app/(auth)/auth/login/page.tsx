@@ -35,7 +35,7 @@ export default function Example () {
             className='mx-auto h-10 w-auto'
           />
           <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
-            Yawa Enterprise Solutions
+            Yawa Enterprise Solution
           </h2>
           <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
             Sign in

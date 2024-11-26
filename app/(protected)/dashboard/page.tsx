@@ -90,12 +90,12 @@ export default function Dashboard () {
           <StatCard
             icon={<Building className='h-6 w-6 text-blue-500' />}
             value='5'
-            label='Safety Org. Accounts'
+            label='States'
           />
           <StatCard
             icon={<MapPinHouse className="h-6 w-6 text-blue-500" />}
             value="25"
-            label="States"
+            label="LGAs"
           />
           <StatCard
             icon={<Building className='h-6 w-6 text-blue-500' />}

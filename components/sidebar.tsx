@@ -36,7 +36,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                   hover:text-gray-900`}
               >
                 <Home className="h-4 w-4" />
-                <span className="text-md font-medium">Dashboard</span>
+                <span className="text-md font-medium">Overview</span>
               </Link>
               <Link
                 href="/dashboard/users"

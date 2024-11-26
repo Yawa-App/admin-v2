@@ -49,13 +49,13 @@ const MultiSelect = ({
     <div className="relative">
       <div className="flex gap-2 flex-wrap">
         {options.map((option) => (
-          <label key={option._id} className="flex items-center p-2 text-gray-800">
+          <label key={option._id} className="flex items-center p-2 text-gray-800 capitalize">
             <input
               type="checkbox"
               value={option._id}
               checked={selectedValues.includes(option._id)}
               onChange={() => handleChange(option._id)}
-              className="mr-2 text-gray-800"
+              className="mr-2 text-gray-800 capitalize"
             />
             {option.name}
           </label>
