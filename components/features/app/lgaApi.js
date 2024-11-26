@@ -10,7 +10,7 @@ export const lgaApi = apiSlice.injectEndpoints({
                 body: credentials,
             }),
         }),
-        getAllLocalGoverment: builder.query({
+        getAllLocalGovernment: builder.query({
             query: () => ({
                 url: '/api/admin/local/invite',
                 method: 'GET',

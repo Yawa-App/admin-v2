@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import profile from '../../../../public/coatofarm.jpg'
 import { useLocals } from "../../../../components/hooks/useLocals";
 import React, { useEffect, useState } from 'react'
 import { Input } from "@/components/ui/input"
@@ -35,8 +36,9 @@ function Responders() {
   
   const totalPages = Math.ceil(data?.data?.locals / usersPerPage);
   const indexOfLastUser = currentPage * usersPerPage
-  // const indexOfFirstUser = indexOfLastUser - usersPerPage
-  const currentUsers = data?.slice(0, usersPerPage)
+  const indexOfFirstUser = indexOfLastUser - usersPerPage
+  console.log(data)
+  const currentUsers = data?.locals?.slice(0, usersPerPage)
   // const { toast } = useToast()
   // const dispatch = useDispatch()
 
@@ -98,7 +100,7 @@ function Responders() {
                     <select
                       id="state"
                       value={state}
-                      onChange={(e) => setState(e.target.value)}
+                      onChange={(e) => handleStateChange(e.target.value)} // Updated to call handleStateChange
                       className="col-span-3 text-sm/6 text-gray-500 p-3 w-[100%] self-start border-gray-300 border rounded"
                     >
                       <option value="">Select a state</option>
@@ -118,7 +120,7 @@ function Responders() {
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="col-span-3 text-sm/6 text-gray-500"
+                      className="col-span-3 text-sm/6 text-gray-500 p-3 w-[100%] self-start border-gray-300 border rounded"
                     >
                       <option value="">Select an LGA</option>
                       {lgas.map((lga, index) => (
@@ -137,13 +139,14 @@ function Responders() {
                         id="email"
                         type="email"
                         value={email}
+                        placeholder="example@gov.ng"
                         onChange={(e) => setEmail(e.target.value)}
                         className="col-span-3 text-sm/6 text-gray-500"
                     />
                   </div>
                 </div>
                 <DialogFooter>
-                    <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Invite'}</button>
+                    <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
                 </DialogFooter>
                 </DialogContent>
             </Dialog>
@@ -154,14 +157,14 @@ function Responders() {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Profile</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Full Name</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Name</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Email</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State</TableHead>
                 <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Created At</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentUsers.map((user: {
+              {currentUsers?.map((user: {
                 _id: string;
                 image: string;
                 name: string;
@@ -169,14 +172,14 @@ function Responders() {
                 createdAt: string;
                 state: string;
               }) => (
-                <TableRow key={user._id}>
+                <TableRow key={user?._id}>
                   <TableCell>
-                    <Image src={user.image} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" width={50} height={50} />
+                    <Image src={user?.image || profile} alt={`${user.name}'s profile`} className="h-10 w-10 rounded-full" width={50} height={50} />
                   </TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.name}</TableCell>
-                  <TableCell className="text-sm text-gray-500">{user.email}</TableCell>
+                  <TableCell className="text-sm text-gray-500 capitalize">{user?.name}</TableCell>
+                  <TableCell className="text-sm text-gray-500">{user?.email}</TableCell>
 
-                  <TableCell className="text-sm text-gray-500">{user.state}</TableCell>
+                  <TableCell className="text-sm text-gray-500">{user?.state}</TableCell>
                   <TableCell className="text-sm text-gray-500">{new Date(user.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',

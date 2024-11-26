@@ -106,6 +106,10 @@ function Agency() {
       toast({
         title: "Agency Invited",
         description: "Agency invited successfully",
+        style: {
+          background: '#000',
+          color: '#fff'
+        }
       });
       setName('');
       setEmail('');
@@ -114,6 +118,10 @@ function Agency() {
       toast({
         title: `${error}`,
         description: "Failed to invite state.",
+        style: {
+          background: '#000',
+          color: '#fff'
+        }
       })
       console.log('Failed to invite state:', error);
     }

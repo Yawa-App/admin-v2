@@ -25,10 +25,17 @@ export const useLocals = () => {
                     background: '#000',
                     color: '#fff',
                 }
-              })
+            })
             refetchState()
         } catch (error) {
-            toast.error(error.data)
+            toast({
+                title: `${error?.data?.message}`,
+                description: `${error?.data?.message}`,
+                style: {
+                    background: '#000',
+                    color: '#fff',
+                }
+            })
             console.log(error)
 
         }
