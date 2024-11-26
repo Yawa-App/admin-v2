@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import React from 'react'
+import React, { useEffect } from 'react'
 // import { useToast } from "@/components/ui/use-toast"
 
 import {
@@ -29,6 +29,7 @@ import { useToast } from "@/hooks/use-toast"
 import profile from '../../../../public/coatofarm.jpg'
 import { Pagination, PaginationLink, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import { useRouter } from 'next/navigation';
+import states from '@/data/states.json'
 
 function States() {
   const { toast } = useToast()
@@ -52,6 +53,7 @@ function States() {
   const [createState, { isLoading, isError }] = useCreatestateMutation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [fetchedStates, setFetchedStates] = useState([]);
 
   const handleInvite = async () => {
     try {
@@ -99,7 +101,7 @@ function States() {
                   </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col gap-4 py-4">
-                  <div className="flex justify-start items-center flex-col gap-4 text-left">
+                  {/* <div className="flex justify-start items-center flex-col gap-4 text-left">
                     <label className="text-sm font-medium text-gray-700 self-start">
                       Name
                     </label>
@@ -109,7 +111,27 @@ function States() {
                       onChange={(e) => setName(e.target.value)}
                       className="col-span-3 text-sm/6 text-gray-500"
                     />
+                  </div> */}
+
+                  <div className="flex justify-start items-center flex-col gap-4 text-left">
+                    <label className="text-sm font-medium text-gray-700 self-start">
+                        State
+                    </label>
+                    <select
+                      id="state"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="col-span-3 text-sm/6 text-gray-500 p-3 w-[100%] self-start border-gray-300 border rounded"
+                    >
+                      <option value="">Select a state</option>
+                      {states.map((state, index) => (
+                        <option key={index} value={state.name}>
+                          {state.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
+
                   <div className="flex justify-start items-center flex-col gap-4 text-left">
                     <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700 self-start">
                       Email Address
@@ -122,6 +144,7 @@ function States() {
                       className="col-span-3 text-sm/6 text-gray-500"
                     />
                   </div>
+
                 </div>
                 <DialogFooter>
                   <button type="button" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>

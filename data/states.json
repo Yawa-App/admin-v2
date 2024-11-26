@@ -1,147 +1,183 @@
 [
     {
       "name": "Abia",
-      "capital": "Umuahia"
+      "capital": "Umuahia",
+      "local_governments": ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Obingwa", "Ohafia", "Osisioma", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuneochi"]
     },
     {
       "name": "Adamawa",
-      "capital": "Yola"
+      "capital": "Yola",
+      "local_governments": ["Demsa", "Fufore", "Ganye", "Girei", "Gombi", "Hong", "Jada", "Lamurde", "Mayo Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"]
     },
     {
       "name": "Akwa Ibom",
-      "capital": "Uyo"
+      "capital": "Uyo",
+      "local_governments": ["Abak", "Eastern Obolo", "Eket", "Esit Eket", "Essien Udim", "Etim Ekpo", "Etinan", "Ibesikpo Asutan", "Ibiono Ibom", "Ikono", "Ikot Abasi", "Ikot Ekpene", "Ini", "Itu", "Mbo", "Mkpat Enin", "Nsit Atai", "Nsit Ibom", "Obot Akara", "Okobo", "Onna", "Oron", "Oruk Anam", "Uruan", "Urue Offong/Oruko", "Ikot Ekpene"]
     },
     {
       "name": "Anambra",
-      "capital": "Awka"
+      "capital": "Awka",
+      "local_governments": ["Aguata", "Anambra East", "Anambra West", "Awka North", "Awka South", "Ayamelum", "Dunukofia", "Ekwusigo", "Idemili North", "Idemili South", "Ihiala", "Njikoka", "Nnewi North", "Nnewi South", "Ogbaru", "Onitsha North", "Onitsha South", "Orumba North", "Orumba South", "Oyi"]
     },
     {
       "name": "Bauchi",
-      "capital": "Bauchi"
+      "capital": "Bauchi",
+      "local_governments": ["Alkaleri", "Bauchi", "Bogoro", "Damban", "Darazo", "Dass", "Gamawa", "Ganjuwa", "Katagum", "Misau", "Ningi", "Shira", "Tafawa Balewa", "Toro", "Warji", "Zaki"]
     },
     {
       "name": "Bayelsa",
-      "capital": "Yenagoa"
+      "capital": "Yenagoa",
+      "local_governments": ["Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa"]
     },
     {
       "name": "Benue",
-      "capital": "Makurdi"
+      "capital": "Makurdi",
+      "local_governments": ["Ado", "Agatu", "Apa", "Buruku", "Gboko", "Guma", "Gwer East", "Gwer West", "Katsina-Ala", "Konshisha", "Logo", "Makurdi", "Obi", "Ogbadibo", "Ohimini", "Otukpo", "Tarka", "Ukum", "Vandeikya"]
     },
     {
       "name": "Borno",
-      "capital": "Maiduguri"
+      "capital": "Maiduguri",
+      "local_governments": ["Abadam", "Askira/Uba", "Bama", "Bayo", "Biu", "Chibok", "Damboa", "Dikwa", "Gubio", "Guzamala", "Hawul", "Jere", "Kaga", "Kala/Balge", "Konduga", "Mafa", "Magumeri", "Maiduguri", "Ngala", "Nganzai", "Shani"]
     },
     {
       "name": "Cross River",
-      "capital": "Calabar"
+      "capital": "Calabar",
+      "local_governments": ["Akamkpa", "Akpabuyo", "Bakassi", "Calabar Municipal", "Calabar South", "Etung", "Ikom", "Obubra", "Obudu", "Odukpani", "Ogoja", "Yakuur", "Yala"]
     },
     {
       "name": "Delta",
-      "capital": "Asaba"
+      "capital": "Asaba",
+      "local_governments": ["Aniocha North", "Aniocha South", "Bomadi", "Burutu", "Delta", "Ethiope East", "Ethiope West", "Ika North East", "Ika South", "Isoko North", "Isoko South East", "Ndokwa East", "Ndokwa West", "Okpe", "Oshimili North", "Oshimili South", "Patani", "Sapele", "Udu", "Ughelli North", "Ughelli South", "Ukwuani", "Warri North", "Warri South", "Warri South West"]
     },
     {
       "name": "Ebonyi",
-      "capital": "Abakaliki"
+      "capital": "Abakaliki",
+      "local_governments": ["Abakaliki", "Afikpo North", "Afikpo South", "Ebonyi", "Ezza North", "Ezza South", "Ikwo", "Ishielu", "Ivo", "Ohaozara", "Ohaukwu", "Onicha"]
     },
     {
       "name": "Edo",
-      "capital": "Benin City"
+      "capital": "Benin City",
+      "local_governments": ["Akoko Edo", "Esan Central", "Esan North-East", "Esan South-East", "Esan West", "Egor", "Igueben", "Ikpoba-Okha", "Oredo", "Orhionmwon", "Ovia North-East", "Ovia South-West", "Uhunmwonde"]
     },
     {
       "name": "Ekiti",
-      "capital": "Ado Ekiti"
+      "capital": "Ado Ekiti",
+      "local_governments": ["Ado Ekiti", "Ekiti East", "Ekiti South-West", "Ekiti West", "Emure", "Irepodun/Ifelodun", "Ise/Orun", "Moba", "Oye"]
     },
     {
       "name": "Enugu",
-      "capital": "Enugu"
+      "capital": "Enugu",
+      "local_governments": ["Awgu", "Enugu East", "Enugu North", "Enugu South", "Ezeagu", "Igbo-Etiti", "Igbo-Eze North", "Igbo-Eze South", "Isi-Uzo", "Nkanu East", "Nkanu West", "Oji River", "Udenu", "Udi", "Nsukka"]
     },
     {
       "name": "Gombe",
-      "capital": "Gombe"
+      "capital": "Gombe",
+      "local_governments": ["Akko", "Balanga", "Billiri", "Dukku", "Gombe", "Kaltungo", "Kwami", "Nafada", "Shongom", "Yamaltu/Deba"]
     },
     {
       "name": "Imo",
-      "capital": "Owerri"
+      "capital": "Owerri",
+      "local_governments": ["Aboh Mbaise", "Ahiazu Mbaise", "Ehime Mbano", "Ezinihitte", "Ideato North", "Ideato South", "Ihitte/Uboma", "Isu", "Mbaitoli", "Ngor Okpala", "Njaba", "Nkwere", "Obowo", "Oguta", "Ohaji/Egbema", "Orlu", "Orsu", "Owerri Municipal", "Owerri North", "Owerri West", "Ugwunagbo", "Umuna"]
     },
     {
       "name": "Jigawa",
-      "capital": "Dutse"
+      "capital": "Dutse",
+      "local_governments": ["Auyo", "Babura", "Bade", "Dutse", "Garki", "Gumel", "Hadejia", "Jahun", "Kazaure", "Kiri Kasama", "Maigatari", "Malam Madori", "Miga", "Ringim", "Sule Tankarkar", "Yankwashi"]
     },
     {
       "name": "Kaduna",
-      "capital": "Kaduna"
+      "capital": "Kaduna",
+      "local_governments": ["Birnin Gwari", "Chikun", "Giwa", "Igabi", "Ikara", "Jaba", "Jema'a", "Kachia", "Kaduna North", "Kaduna South", "Kagarko", "Kaura", "Kudan", "Lere", "Makarfi", "Sabon Gari", "Sanga", "Soba", "Zaria"]
     },
     {
       "name": "Kano",
-      "capital": "Kano"
+      "capital": "Kano",
+      "local_governments": ["Ajingi", "Albasu", "Bagwai", "Bebeji", "Bichi", "Dala", "Dawakin Kudu", "Dawakin Tofa", "Doguwa", "Fagge", "Gaya", "Gezawa", "Gwarzo", "Kano Municipal", "Karaye", "Kibiya", "Kumbotso", "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rogo", "Shanono", "Sumaila", "Tofa", "Tudun Wada", "Ungogo", "Warawa", "Wudil"]
     },
     {
       "name": "Katsina",
-      "capital": "Katsina"
+      "capital": "Katsina",
+      "local_governments": ["Bakori", "Batagarawa", "Batsari", "Baure", "Dandume", "Danja", "Danmusa", "Funtua", "Katsina", "Kankara", "Kankia", "Kurfi", "Malumfashi", "Mashi", "Musawa", "Rimi", "Sabuwa", "Sandamu", "Zango"]
     },
     {
       "name": "Kebbi",
-      "capital": "Birnin Kebbi"
+      "capital": "Birnin Kebbi",
+      "local_governments": ["Aleiro", "Arewa Dandi", "Argungu", "Bagudo", "Birnin Kebbi", "Bunza", "Dandi", "Fakai", "Gwandu", "Jega", "Kalgo", "Koko/Besse", "Maiyama", "Ngaski", "Sakaba", "Shanga", "Suru", "Yauri", "Zuru"]
     },
     {
       "name": "Kogi",
-      "capital": "Lokoja"
+      "capital": "Lokoja",
+      "local_governments": ["Adavi", "Ajaokuta", "Ankpa", "Bassa", "Dekina", "Ibaji", "Idah", "Igalamela/Odolu", "Ijumu", "Kabba/Bunu", "Kogi", "Lokoja", "Mopa-Muro", "Ofu", "Ogori/Magongo", "Okehi", "Okene", "Olamaboro", "Yagba East", "Yagba West"]
     },
     {
       "name": "Kwara",
-      "capital": "Ilorin"
+      "capital": "Ilorin",
+      "local_governments": ["Asa", "Baruten", "Ekiti", "Ifelodun", "Ilorin East", "Ilorin South", "Ilorin West", "Irepodun", "Isin", "Kaiama", "Moro", "Offa", "Oke Ero", "Oyun", "Pategi"]
     },
     {
       "name": "Lagos",
-      "capital": "Ikeja"
+      "capital": "Ikeja",
+      "local_governments": ["Agege", "Ajeromi-Ifelodun", "Alimosho", "Amuwo-Odofin", "Apapa", "Badagry", "Epe", "Eti-Osa", "Ibeju-Lekki", "Ifako-Ijaiye", "Ikeja", "Ikorodu", "Kosofe", "Lagos Island", "Lagos Mainland", "Mushin", "Ojo", "Oshodi-Isolo", "Somolu", "Surulere"]
     },
     {
       "name": "Nasarawa",
-      "capital": "Lafia"
+      "capital": "Lafia",
+      "local_governments": ["Akwanga", "Doma", "Keffi", "Kokona", "Nasarawa", "Nasarawa Eggon", "Obi", "Toto", "Wamba"]
     },
     {
       "name": "Niger",
-      "capital": "Minna"
+      "capital": "Minna",
+      "local_governments": ["Agaie", "Agwara", "Bida", "Borgu", "Bosso", "Chanchaga", "Edati", "Gbako", "Gurara", "Katcha", "Kontagora", "Lapai", "Lavun", "Magama", "Mariga", "Mashegu", "Mokwa", "Paikoro", "Rafi", "Rijau", "Shiroro", "Suleja", "Tafa", "Wushishi"]
     },
     {
       "name": "Ogun",
-      "capital": "Abeokuta"
+      "capital": "Abeokuta",
+      "local_governments": ["Abeokuta North", "Abeokuta South", "Ado-Odo/Ota", "Egbado North", "Egbado South", "Ifo", "Ijebu East", "Ijebu North", "Ijebu North East", "Ijebu Ode", "Obafemi-Owode", "Odeda", "Odogbolu", "Remo North", "Sagamu", "Yewa North", "Yewa South"]
     },
     {
       "name": "Ondo",
-      "capital": "Akure"
+      "capital": "Akure",
+      "local_governments": ["Akoko North-East", "Akoko North-West", "Akoko South-East", "Akoko South-West", "Akure North", "Akure South", "Ese Odo", "Idanre", "Ifedore", "Ilaje", "Odigbo", "Ose", "Owo"]
     },
     {
       "name": "Osun",
-      "capital": "Oshogbo"
+      "capital": "Oshogbo",
+      "local_governments": ["Aiyedade", "Aiyedire", "Atakunmosa East", "Atakunmosa West", "Boluwaduro", "Boripe", "Ife Central", "Ife East", "Ife North", "Ife South", "Ilesa East", "Ilesa West", "Isokan", "Obokun", "Odo Otin", "Olorunda", "Oriade", "Osogbo", "Olaoluwa", "Irewole"]
     },
     {
       "name": "Oyo",
-      "capital": "Ibadan"
+      "capital": "Ibadan",
+      "local_governments": ["Akinyele", "Atiba", "Atisbo", "Egbeda", "Ibadan North", "Ibadan North-East", "Ibadan North-West", "Ibadan South-East", "Ibadan South-West", "Ibarapa Central", "Ibarapa East", "Ibarapa North", "Ido", "Iseyin", "Itesiwaju", "Ogbomosho North", "Ogbomosho South", "Oyo East", "Oyo West", "Saki East", "Saki West"]
     },
     {
       "name": "Plateau",
-      "capital": "Jos"
+      "capital": "Jos",
+      "local_governments": ["Bokkos", "Jos East", "Jos North", "Kanke", "Langtang North", "Langtang South", "Mangu", "Pankshin", "Quaan Pan", "Riyom", "Shendam", "Wase"]
     },
     {
       "name": "Rivers",
-      "capital": "Port Harcourt"
+      "capital": "Port Harcourt",
+      "local_governments": ["Abua/Odual", "Ahoada East", "Ahoada West", "Akuku-Toru", "Asari-Toru", "Bonny", "Degema", "Emohua", "Etche", "Ikwerre", "Obio/Akpor", "Ogba/Egbema/Ndoni", "Ogu/Bolo", "Okrika", "Omuma", "Port Harcourt", "Tai"]
     },
     {
       "name": "Sokoto",
-      "capital": "Sokoto"
+      "capital": "Sokoto",
+      "local_governments": ["Binji", "Bodinga", "Dange Shuni", "Gada", "Goronyo", "Gudu", "Illela", "Kebbe", "Kware", "Rabah", "Sokoto North", "Sokoto South", "Tambuwal", "Wamako", "Wurno", "Yabo"]
     },
     {
       "name": "Taraba",
-      "capital": "Jalingo"
+      "capital": "Jalingo",
+      "local_governments": ["Ardo Kola", "Bali", "Donga", "Gashaka", "Gassol", "Ibi", "Jalingo", "Karim Lamido", "Kona", "Lau", "Sardauna", "Takum", "Ussa", "Wukari"]
     },
     {
       "name": "Yobe",
-      "capital": "Damaturu"
+      "capital": "Damaturu",
+      "local_governments": ["Bade", "Bursari", "Damaturu", "Fika", "Fune", "Geidam", "Gujba", "Gulani", "Jakusko", "Karasuwa", "Machina", "Nangere", "Nguru", "Potiskum", "Tarmuwa", "Yunusari"]
     },
     {
       "name": "Zamfara",
-      "capital": "Gusau"
+      "capital": "Gusau",
+      "local_governments": ["Anka", "Bakura", "Birnin Magaji", "Bukkuyum", "Gusau", "Gwadabawa", "Maradun", "Shinkafi", "Talata Mafara", "Zamfara"]
     }
-  ]
+]
   

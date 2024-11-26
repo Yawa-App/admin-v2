@@ -17,7 +17,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useGetAllLocalGovernmentQuery } from "@/components/features/app/lgaApi"
 import { useDispatch } from "react-redux"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
-// import states from '@/data/states.json'
+import states from '@/data/states.json'
 
 
 function Responders() {
@@ -26,6 +26,7 @@ function Responders() {
   const [email, setEmail] = useState('')
   const [state, setState] = useState('')
   const usersPerPage = 20
+  const [lgas, setLgas] = useState<string[]>([]);
   
   const {
     data,  
@@ -52,38 +53,17 @@ function Responders() {
     setEmail('')
   }
 
-  const [fetchedStates, setFetchedStates] = useState([]);
-  const [lgas, setLgas] = useState([]);
-
-  const getStatesFromApi = async (): Promise<any> => {
-    let response = await fetch(
-      'https://nga-states-lga.onrender.com/fetch'
-    );
-    let json = await response.json();
-    return json.states;
-  };
-
-  const getLgasFromApi = async (selectedState: string) => {
-    let response = await fetch(
-      `https://nga-states-lga.onrender.com/?state=${selectedState}`
-    );
-    let json = await response.json();
-    return json.lga;
-  };
 
   const handleStateChange = async (selectedState: string) => {
     setState(selectedState);
-    const lgasFromApi = await getLgasFromApi(selectedState);
-    setLgas(lgasFromApi);
+    const selectedStateData = states.find(state => state.name === selectedState);
+    if (selectedStateData) {
+        setLgas(selectedStateData.local_governments);
+    } else {
+        setLgas([]);
+    }
   };
 
-  useEffect(() => {
-    const fetchStates = async () => {
-      const statesFromApi = await getStatesFromApi();
-      setFetchedStates(statesFromApi);
-    };
-    fetchStates();
-  }, []);
 
   
   return (
@@ -110,6 +90,7 @@ function Responders() {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col gap-4 py-4">
+
                   <div className="flex justify-start items-center flex-col gap-4 text-left">
                     <label className="text-sm font-medium text-gray-700 self-start">
                         State
@@ -121,9 +102,9 @@ function Responders() {
                       className="col-span-3 text-sm/6 text-gray-500 p-3 w-[100%] self-start border-gray-300 border rounded"
                     >
                       <option value="">Select a state</option>
-                      {fetchedStates.map((state, index) => (
-                        <option key={index} value={state}>
-                          {state}
+                      {states.map((state, index) => (
+                        <option key={index} value={state.name}>
+                          {state.name}
                         </option>
                       ))}
                     </select>
