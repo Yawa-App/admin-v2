@@ -3,13 +3,6 @@
 import Image from "next/image"
 import React, { useState } from 'react'
 import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight
-} from 'lucide-react'
-import { Sidebar } from '@/components/sidebar'
-import {
   Table,
   TableBody,
   TableCell,
@@ -20,7 +13,6 @@ import {
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -37,8 +29,6 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { useGetUsersQuery } from '@/components/features/app/userSlide'
-import { useGetCirclesQuery } from '@/components/features/app/circleslide'
 
 // This is mock data. In a real application, you'd fetch this from an API.
 const users = [
@@ -194,7 +184,7 @@ function Admins () {
                     Invite a Sub Admin
                   </DialogTitle>
                   <DialogDescription className='text-sm/6 text-gray-500'>
-                    Make changes to your profile here. Click save when you're
+                    Make changes to your profile here. Click save when you&apos;re
                     done.
                   </DialogDescription>
                 </DialogHeader>
@@ -267,10 +257,12 @@ function Admins () {
               {currentUsers.map(user => (
                 <TableRow key={user.id}>
                   <TableCell>
-                    <img
+                    <Image
                       src={user.image}
                       alt={`${user.name}'s profile`}
                       className='h-10 w-10 rounded-full'
+                      width={30}
+                      height={30}
                     />
                   </TableCell>
                   <TableCell className='text-sm text-gray-500'>

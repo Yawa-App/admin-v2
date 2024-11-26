@@ -71,7 +71,7 @@ function Agency() {
   const router = useRouter();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [createAgency, { isLoading, isError }] = useCreateagencyMutation()
+  const [createAgency, { isLoading }] = useCreateagencyMutation()
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
 
 
@@ -95,7 +95,7 @@ function Agency() {
   const currentAgency = agencyData?.agencies.slice(0, usersPerPage) || []
   const totalPages = Math.ceil(agencyData?.agencies?.totalAgencies / usersPerPage)
   const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
 
   function paginate(pageNumber: number): void {
     setCurrentPage(pageNumber)

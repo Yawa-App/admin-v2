@@ -10,7 +10,6 @@ import {
   LifeBuoy,
   MapPinHouse
 } from 'lucide-react'
-import { Sidebar } from '@/components/sidebar'
 import { StatCard } from '@/components/stat-card'
 import {
   RegisteredStatesChart,

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import yawaLogo from '../../../../public/logoWhite.png'
 
 export default function Example () {
-  const { handlelogin, isLoading, error, isError, data } = useAuth()
+  const { handlelogin, isLoading, } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

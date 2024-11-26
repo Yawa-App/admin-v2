@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import React from 'react'
-import { Sidebar } from "@/components/sidebar"
 // import { useToast } from "@/components/ui/use-toast"
 
 import {
@@ -23,7 +22,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { useCreatestateMutation, useGetAllStatesQuery } from '@/components/features/app/stateApi'
 import { useState } from 'react'
 import { useToast } from "@/hooks/use-toast"
@@ -44,12 +43,12 @@ function States() {
   const usersPerPage = 20
   const totalPages = Math.ceil(data?.data?.totalStates / usersPerPage)
   const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
 
   // Update currentUsers to use the fetched data
   const currentUsers = data?.states.slice(0, usersPerPage) || []
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [createState, { isLoading, isError }] = useCreatestateMutation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')

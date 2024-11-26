@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { Header, SubHeader } from '@/components/typography';
+import { Header} from '@/components/typography';
 import { useGetAgencyQuery } from '@/components/features/app/agencyApi';
 
 function SingleAgency() {
@@ -22,14 +23,13 @@ function SingleAgency() {
     const {
       data: userData,
       isLoading,
-      isError,
-      error,
+
     } = useGetAgencyQuery(agencyId, { skip: !agencyId}); // Skip query if userId is not available
 
     console.log(agencyId, userData)
 
     const user = userData?.agency;
-    const responder = userData?.subAgencies;
+    // const responder = userData?.subAgencies;
   
     if (!agencyId) return <div>No user ID provided.</div>; // Handle case where userId is null
     if (isLoading) return <div>Loading...</div>;
@@ -44,7 +44,7 @@ function SingleAgency() {
                 <div className="flex items-center justify-between border-gray-300 border-[1px] rounded-lg p-4 text-gray-800">
                     <div className='flex items-center'>
                         {user?.picture ? (
-                        <img src={user?.picture} alt={user.name} className="w-16 h-16 rounded-full" />
+                        <Image width={40} height={40} src={user?.picture} alt={user.name} className="w-16 h-16 rounded-full" />
                         ) : (
                         <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
                             <span className='capitalize'>{user?.name.charAt(0)}</span>

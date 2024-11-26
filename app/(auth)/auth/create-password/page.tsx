@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image"
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
@@ -7,7 +9,7 @@ export default function Example() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const { handleCreatePassword, isLoading} = useAuth();
+  const { handleCreatePassword} = useAuth();
 
   const { toast } = useToast()
 

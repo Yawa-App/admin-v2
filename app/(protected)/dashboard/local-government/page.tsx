@@ -14,10 +14,10 @@ import React, { useEffect, useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
-import { useCreateLocalGovernmentMutation, useGetAllLocalGovernmentQuery } from "@/components/features/app/lgaApi"
+import { useGetAllLocalGovernmentQuery } from "@/components/features/app/lgaApi"
 import { useDispatch } from "react-redux"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
-import states from '@/data/states.json'
+// import states from '@/data/states.json'
 
 
 function Responders() {
@@ -30,16 +30,14 @@ function Responders() {
   const {
     data,  
     isLoading,
-    isError,
-    error,
   } = useGetAllLocalGovernmentQuery({});
   
   const totalPages = Math.ceil(data?.data?.locals / usersPerPage);
   const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstUser = indexOfLastUser - usersPerPage
+  // const indexOfFirstUser = indexOfLastUser - usersPerPage
   const currentUsers = data?.slice(0, usersPerPage)
-  const { toast } = useToast()
-  const dispatch = useDispatch()
+  // const { toast } = useToast()
+  // const dispatch = useDispatch()
 
   const { handleInviteLga } = useLocals();
   // const [createLocalGovernment, { isLoading, isError }] = useCreateLocalGovernmentMutation()

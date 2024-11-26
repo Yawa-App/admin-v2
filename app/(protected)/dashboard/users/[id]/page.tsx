@@ -23,8 +23,6 @@ function SingleUser() {
     const {
       data: userData,
       isLoading,
-      isError,
-      error,
     } = useGetUserQuery(userId, { skip: !userId }); // Skip query if userId is not available
 
     console.log(userId, userData)
