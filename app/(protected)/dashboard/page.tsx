@@ -26,8 +26,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { useRouter } from 'next/navigation'
 
 export default function Dashboard () {
+  const router = useRouter();
+
   return (
     <>
       {/* <Sidebar /> */}
@@ -40,7 +43,7 @@ export default function Dashboard () {
             <p className='text-gray-700 capitalize'>Super admin</p>
           </div>
 
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4' onClick={() => router.push('dashboard/notifications')}>
             <button className='rounded-full bg-gray-400 p-2'>
               <Bell className='h-5 w-5' />
             </button>
