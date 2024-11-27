@@ -138,7 +138,7 @@ export default function Support() {
                       <SelectItem value="Closed">Closed</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button type="submit" className='bg-[#03BDE9] text-white'>Send Response</Button>
+                  <Button type="submit" className='bg-[#03BDE9] text-white rounded-none'>Send Response</Button>
                 </div>
               </form>
             </CardContent>

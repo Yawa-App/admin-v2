@@ -82,13 +82,13 @@ function Responders() {
           <>
             <Dialog>
                 <DialogTrigger asChild>
-                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite a LGA</button>
+                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-none">Invite a LGA</button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[525px]">
                 <DialogHeader>
                     <DialogTitle className="text-lg font-bold text-gray-700">Invite a LGA</DialogTitle>
                     <DialogDescription className="text-sm/6 text-gray-500">
-                    Make changes to your profile here. Click save when you&apos;re done.
+                    Make sure you input all details before sending an invite. Click send when you&apos;re done.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col gap-4 py-4">
@@ -146,7 +146,7 @@ function Responders() {
                   </div>
                 </div>
                 <DialogFooter>
-                    <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
+                    <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-none" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
                 </DialogFooter>
                 </DialogContent>
             </Dialog>

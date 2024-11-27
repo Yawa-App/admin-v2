@@ -174,7 +174,7 @@ function Admins () {
           <>
             <Dialog>
               <DialogTrigger asChild>
-                <button className='bg-[#03BDE9] text-white px-4 py-2 rounded-md'>
+                <button className='bg-[#03BDE9] text-white px-4 py-2 rounded-none'>
                   Invite a Sub Admin
                 </button>
               </DialogTrigger>
@@ -190,7 +190,7 @@ function Admins () {
                 </DialogHeader>
                 <div className='flex flex-col gap-4 py-4'>
                   <div className='flex justify-start items-center flex-col gap-4 text-left'>
-                    <p className='text-sm font-medium text-gray-700'>Name</p>
+                    <label htmlFor="name" className='self-start text-sm font-medium text-gray-700'>Name</label>
                     <Input
                       id='name'
                       className='col-span-3 text-sm/6 text-gray-500'
@@ -199,7 +199,7 @@ function Admins () {
                   <div className='flex justify-start items-center flex-col gap-4 text-left'>
                     <label
                       htmlFor='email'
-                      className='text-right text-sm/6 font-medium text-gray-700'
+                      className='self-start text-sm/6 font-medium text-gray-700'
                     >
                       Email Address
                     </label>
@@ -213,9 +213,9 @@ function Admins () {
                 <DialogFooter>
                   <button
                     type='submit'
-                    className='bg-[#03BDE9] text-white px-4 py-2 rounded-md'
+                    className='bg-[#03BDE9] text-white px-4 py-2 rounded-none'
                   >
-                    Invite
+                    Send Invite
                   </button>
                 </DialogFooter>
               </DialogContent>

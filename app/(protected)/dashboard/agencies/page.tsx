@@ -142,7 +142,7 @@ function Agency() {
         <>
           <Dialog>
               <DialogTrigger asChild>
-              <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite an Agency</button>
+              <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-none">Invite an Agency</button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[525px]">
               <DialogHeader>
@@ -188,7 +188,7 @@ function Agency() {
                   </div>
               </div>
               <DialogFooter>
-                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
+                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-none" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
               </DialogFooter>
               </DialogContent>
           </Dialog>

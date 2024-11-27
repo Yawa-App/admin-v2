@@ -64,10 +64,10 @@ export default function ProfileSettings() {
           <p className="text-gray-500">Manage your account settings and set email preferences.</p>
         </div>
         <Tabs defaultValue="general" className="space-y-4">
-          <TabsList className=" text-gray-700">
-            <TabsTrigger value="general ">General</TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsList>
+            <TabsTrigger value="general" className='text-gray-800 active:bg-gray-400'>General</TabsTrigger>
+            <TabsTrigger value="password" className='text-gray-800'>Password</TabsTrigger>
+            <TabsTrigger value="notifications" className='text-gray-800'>Notifications</TabsTrigger>
           </TabsList>
 
           {/* General */}
@@ -109,16 +109,6 @@ export default function ProfileSettings() {
                       className="text-gray-500"
                       value={user.phone}
                       onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="bio" className="text-gray-700">Bio</label>
-                    <Textarea
-                      id="bio"
-                      name="bio"
-                      value={user.bio}
-                      onChange={handleInputChange}
-                      className="text-gray-500"
                     />
                   </div>
                 </CardContent>

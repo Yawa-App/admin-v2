@@ -55,14 +55,14 @@ export default function YawaEnterpriseCTA() {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <Button 
             onClick={() => router.push('/auth/login')}
-            className="bg-[#03BDE9] hover:bg-[#029BC1] text-white font-bold py-3 px-6 rounded-full text-lg transition-colors duration-300"
+            className="bg-[#03BDE9] hover:bg-[#029BC1] text-white font-bold py-3 px-6 rounded-none text-lg transition-colors duration-300"
           >
             Login
           </Button>
           <Button 
             variant="outline"
             onClick={() => router.push('/auth/login')}
-            className="border-[#03BDE9] text-[#03BDE9] hover:bg-[#03BDE9] hover:text-white font-bold py-3 px-6 rounded-full text-lg transition-colors duration-300"
+            className="border-[#03BDE9] text-[#03BDE9] hover:bg-[#03BDE9] hover:text-white font-bold py-3 px-6 rounded-none text-lg transition-colors duration-300"
           >
             Request Demo
           </Button>

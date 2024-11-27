@@ -90,7 +90,7 @@ function States() {
           <>
             <Dialog>
               <DialogTrigger asChild>
-                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-md">Invite a State</button>
+                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-none">Invite a State</button>
               </DialogTrigger>
 
               <DialogContent className="sm:max-w-[425px]">
@@ -147,7 +147,7 @@ function States() {
 
                 </div>
                 <DialogFooter>
-                  <button type="button" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-md" disabled={isLoading}>
+                  <button type="button" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-none" disabled={isLoading}>
                     {isLoading ? 'Inviting...' : 'Send Invite'}
                   </button>
                   {isError && <p className="text-red-500">Failed to invite state. Please try again.</p>}
