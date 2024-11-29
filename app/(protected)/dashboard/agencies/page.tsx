@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,34 +8,52 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
-  import profile from '../../../../public/coatofarm.jpg'
-  import { Input } from "@/components/ui/input"
-  import { useCreateagencyMutation, useGetAllAgencyQuery } from '@/components/features/app/agencyApi'
-import { useToast } from '@/hooks/use-toast'
-import { useGetcategoriesQuery } from '@/components/features/app/authSlide';
-import { Pagination, PaginationPrevious, PaginationLink, PaginationNext, PaginationContent, PaginationItem } from '@/components/ui/pagination';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image'
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import profile from "../../../../public/coatofarm.jpg";
+import { Input } from "@/components/ui/input";
+import {
+  useCreateagencyMutation,
+  useGetAllAgencyQuery,
+} from "@/components/features/app/agencyApi";
+import { useToast } from "@/hooks/use-toast";
+import { useGetcategoriesQuery } from "@/components/features/app/authSlide";
+import {
+  Pagination,
+  PaginationPrevious,
+  PaginationLink,
+  PaginationNext,
+  PaginationContent,
+  PaginationItem,
+} from "@/components/ui/pagination";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
+interface Agency {
+  _id: string;
+  name: string;
+  email: string;
+  state?: string;
+  lga?: string;
+  createdAt: string;
+}
 
-const MultiSelect = ({ 
-  options, 
-  selectedValues, 
-  onChange 
+const MultiSelect = ({
+  options,
+  selectedValues,
+  onChange,
 }: {
-  options: Array<{ _id: string, name: string }>,
-  selectedValues: string[],
-  onChange: (values: string[]) => void
+  options: Array<{ _id: string; name: string }>;
+  selectedValues: string[];
+  onChange: (values: string[]) => void;
 }) => {
   const handleChange = (value: string) => {
     if (selectedValues.includes(value)) {
@@ -49,7 +67,10 @@ const MultiSelect = ({
     <div className="relative">
       <div className="flex gap-2 flex-wrap">
         {options.map((option) => (
-          <label key={option._id} className="flex items-center p-2 text-gray-800 capitalize">
+          <label
+            key={option._id}
+            className="flex items-center p-2 text-gray-800 capitalize"
+          >
             <input
               type="checkbox"
               value={option._id}
@@ -66,146 +87,183 @@ const MultiSelect = ({
 };
 
 function Agency() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const { toast } = useToast()
+  const [currentPage, setCurrentPage] = useState(1);
+  const { toast } = useToast();
   const router = useRouter();
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [createAgency, { isLoading }] = useCreateagencyMutation()
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [createAgency, { isLoading }] = useCreateagencyMutation();
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
 
-
   const {
-    data
+    data,
     // isLoading,
     // isSuccess,
     // isError,
     // error,
-  } = useGetcategoriesQuery({})
+  } = useGetcategoriesQuery({});
   const {
-    data: agencyData
+    data: agencyData,
     // isLoading,
     // isSuccess,
     // isError,
     // error,
-  } = useGetAllAgencyQuery({})
+  } = useGetAllAgencyQuery({});
 
-  const usersPerPage = 10
+  const usersPerPage = 10;
   // const currentUsers = agencies.slice(0, usersPerPage)
-  const currentAgency = agencyData?.agencies.slice(0, usersPerPage) || []
-  const totalPages = Math.ceil(agencyData?.agencies?.totalAgencies / usersPerPage)
-  const indexOfLastUser = currentPage * usersPerPage
+  const currentAgency = agencyData?.agencies.slice(0, usersPerPage) || [];
+  const totalPages = Math.ceil(
+    agencyData?.agencies?.totalAgencies / usersPerPage
+  );
+  // const indexOfLastUser = currentPage * usersPerPage
   // const indexOfFirstUser = indexOfLastUser - usersPerPage
 
   function paginate(pageNumber: number): void {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber);
   }
   const handleInvite = async () => {
     try {
-      await createAgency({ name, email, category: selectedCategoryIds }).unwrap(); // Include categoryIds
+      await createAgency({
+        name,
+        email,
+        category: selectedCategoryIds,
+      }).unwrap(); // Include categoryIds
       toast({
         title: "Agency Invited",
         description: "Agency invited successfully",
         style: {
-          background: '#000',
-          color: '#fff'
-        }
+          background: "#000",
+          color: "#fff",
+        },
       });
-      setName('');
-      setEmail('');
+      setName("");
+      setEmail("");
       setSelectedCategoryIds([]); // Reset selected categories
     } catch (error) {
       toast({
         title: `${error}`,
         description: "Failed to invite state.",
         style: {
-          background: '#000',
-          color: '#fff'
-        }
-      })
-      console.log('Failed to invite state:', error);
+          background: "#000",
+          color: "#fff",
+        },
+      });
+      console.log("Failed to invite state:", error);
     }
   };
-
 
   return (
     <>
       {/* <Sidebar /> */}
       <div className="flex-1 space-y-8 p-8 pt-6">
+        <div className="flex items-center justify-between ">
+          <div className="flex items-start justify-start flex-col gap-4">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-700">
+              Agencies
+            </h2>
+            <p className="text-md text-gray-500">
+              Manage agencies on Yawa here
+            </p>
+          </div>
 
-      <div className="flex items-center justify-between ">
-        <div className="flex items-start justify-start flex-col gap-4">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-700">Agencies</h2>
-          <p className="text-md text-gray-500">Manage agencies on Yawa here</p>
-        </div>
-
-        <>
-          <Dialog>
+          <>
+            <Dialog>
               <DialogTrigger asChild>
-              <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-none">Invite an Agency</button>
+                <button className="bg-[#03BDE9] text-white px-4 py-2 rounded-none">
+                  Invite an Agency
+                </button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[525px]">
-              <DialogHeader>
-                  <DialogTitle className="text-lg font-bold text-gray-700">Invite an Agency</DialogTitle>
+                <DialogHeader>
+                  <DialogTitle className="text-lg font-bold text-gray-700">
+                    Invite an Agency
+                  </DialogTitle>
                   <DialogDescription className="text-sm/6 text-gray-500">
-                  Make sure you select a category when sending an invite. Click send when you&apos;re done.
+                    Make sure you select a category when sending an invite.
+                    Click send when you&apos;re done.
                   </DialogDescription>
-              </DialogHeader>
-              <div className="flex flex-col gap-4 py-4">
+                </DialogHeader>
+                <div className="flex flex-col gap-4 py-4">
                   <div className="flex justify-start items-center flex-col gap-4 text-left">
                     <label className="text-sm font-medium text-gray-700 self-start">
-                        Name
+                      Name
                     </label>
                     <Input
                       id="name"
-                      type='text'
+                      type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="col-span-3 text-sm/6 text-gray-500"
                     />
                   </div>
                   <div className="flex justify-start items-center flex-col gap-4 text-left">
-                    <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700 self-start">
-                        Email Address
+                    <label
+                      htmlFor="email"
+                      className="text-right text-sm/6 font-medium text-gray-700 self-start"
+                    >
+                      Email Address
                     </label>
                     <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="col-span-3 text-sm/6 text-gray-500"
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="col-span-3 text-sm/6 text-gray-500"
                     />
                   </div>
                   <div className="flex justify-start items-center flex-col gap-4 text-left">
-                  <label htmlFor="email" className="text-right text-sm/6 font-medium text-gray-700 self-start">
-                        Categories
+                    <label
+                      htmlFor="email"
+                      className="text-right text-sm/6 font-medium text-gray-700 self-start"
+                    >
+                      Categories
                     </label>
-                  <MultiSelect
-                    options={data?.data || []}
-                    selectedValues={selectedCategoryIds}
-                    onChange={setSelectedCategoryIds}
-                  />
+                    <MultiSelect
+                      options={data?.data || []}
+                      selectedValues={selectedCategoryIds}
+                      onChange={setSelectedCategoryIds}
+                    />
                   </div>
-              </div>
-              <DialogFooter>
-                  <button type="submit" onClick={handleInvite} className="bg-[#03BDE9] text-white px-4 py-2 rounded-none" disabled={isLoading}>{isLoading ? 'Inviting...' : 'Send Invite'}</button>
-              </DialogFooter>
+                </div>
+                <DialogFooter>
+                  <button
+                    type="submit"
+                    onClick={handleInvite}
+                    className="bg-[#03BDE9] text-white px-4 py-2 rounded-none"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Inviting..." : "Send Invite"}
+                  </button>
+                </DialogFooter>
               </DialogContent>
-          </Dialog>
-        </>
-      </div>
+            </Dialog>
+          </>
+        </div>
 
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Profile</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Full Name</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Email</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  Profile
+                </TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  Full Name
+                </TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  Email
+                </TableHead>
                 {/* <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Phone Number</TableHead> */}
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">State</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">LGA</TableHead>
-                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">Created At</TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  State
+                </TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  LGA
+                </TableHead>
+                <TableHead className="w-1/8 text-left text-md font-bold text-gray-700">
+                  Created At
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -216,25 +274,40 @@ function Agency() {
                   </TableCell>
                 </TableRow>
               ) : (
-                currentAgency.map((agency: any, index: number) => (
-                  <TableRow key={agency._id || index}
-                  role='link'
-                  className='cursor-pointer'
-                  onClick={() => router.push(`/dashboard/agencies/q?agency=${agency?._id}`)}
+                currentAgency.map((agency: Agency, index: number) => (
+                  <TableRow
+                    key={agency._id || index}
+                    role="link"
+                    className="cursor-pointer"
+                    onClick={() =>
+                      router.push(`/dashboard/agencies/q?agency=${agency?._id}`)
+                    }
                   >
                     <TableCell>
-                      <Image src={profile} alt={`${agency.name}'s profile`} className="h-10 w-10 rounded-full" />
+                      <Image
+                        src={profile}
+                        alt={`${agency.name}'s profile`}
+                        className="h-10 w-10 rounded-full"
+                      />
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500 capitalize">{agency.name}</TableCell>
-                    <TableCell className="text-sm text-gray-500">{agency.email}</TableCell>
-                    {/* <TableCell className="text-sm text-gray-500">{agency.phone}</TableCell> */}
-                    <TableCell className="text-sm text-gray-500">{agency.state}</TableCell>
-                    <TableCell className="text-sm text-gray-500">{agency.lga}</TableCell>
+                    <TableCell className="text-sm text-gray-500 capitalize">
+                      {agency.name}
+                    </TableCell>
                     <TableCell className="text-sm text-gray-500">
-                      {new Date(agency.createdAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
+                      {agency.email}
+                    </TableCell>
+                    {/* <TableCell className="text-sm text-gray-500">{agency.phone}</TableCell> */}
+                    <TableCell className="text-sm text-gray-500">
+                      {agency.state}
+                    </TableCell>
+                    <TableCell className="text-sm text-gray-500">
+                      {agency.lga}
+                    </TableCell>
+                    <TableCell className="text-sm text-gray-500">
+                      {new Date(agency.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </TableCell>
                   </TableRow>
@@ -247,23 +320,38 @@ function Agency() {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.max(1, currentPage - 1))} size={undefined} />
+              <PaginationPrevious
+                className="text-gray-800 px-2 py-1 mx-2 cursor-pointer"
+                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                size={undefined}
+              />
             </PaginationItem>
-            {[(totalPages)].map((_, index) => (
-              <PaginationItem key={index} className=' text-gray-800 px-2 py-1 rounded-md mx-2'>
-                <PaginationLink onClick={() => paginate(index + 1)} isActive={currentPage === index + 1} size={undefined}>
+            {[totalPages].map((_, index) => (
+              <PaginationItem
+                key={index}
+                className=" text-gray-800 px-2 py-1 rounded-md mx-2"
+              >
+                <PaginationLink
+                  onClick={() => paginate(index + 1)}
+                  isActive={currentPage === index + 1}
+                  size={undefined}
+                >
                   {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext className='text-gray-800 px-2 py-1 mx-2 cursor-pointer' onClick={() => paginate(Math.min(totalPages, currentPage + 1))} size={undefined} />
+              <PaginationNext
+                className="text-gray-800 px-2 py-1 mx-2 cursor-pointer"
+                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                size={undefined}
+              />
             </PaginationItem>
           </PaginationContent>
-        </Pagination> 
+        </Pagination>
       </div>
     </>
-  )
+  );
 }
 
-export default Agency
+export default Agency;

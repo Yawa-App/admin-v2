@@ -1,18 +1,17 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-import { BASEURLAPI } from '../../utils/api';
-
-import { logOut } from '../slide/authSlice';
-
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASEURLAPI } from "../../utils/api";
+import { logOut } from "../slide/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASEURLAPI,
-  prepareHeaders: (headers, { getState }) => {
-    const token = localStorage.getItem('accessToken');
+  prepareHeaders: (headers) => {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
 
-    // const token = getState().auth.token;
     if (token) {
-      headers.set('authorization', `Bearer ${token}`);
+      headers.set("authorization", `Bearer ${token}`);
     }
     return headers;
   },
@@ -20,14 +19,17 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithAuthCheck = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
+
   if (result.error && result.error.status === 401) {
     // Token has expired or is invalid
     api.dispatch(logOut());
+    // Optional: Add error handling or redirection
   }
+
   return result;
 };
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithAuthCheck,
-  endpoints: (builder) => ({}),
+  endpoints: () => ({}), // Ensure endpoints is defined, even if empty
 });
