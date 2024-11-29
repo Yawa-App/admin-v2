@@ -11,7 +11,7 @@ export default function YawaEnterpriseCTA() {
   return (
     <section className="h-[100vh] bg-gradient-to-b from-white to-[#E6F8FC] py-16 md:py-24 text-gray-800 flex justify-end items-center">
       <div className="container mx-auto px-4 text-center flex justify-end items-center flex-col">
-          <div className="flex items-center flex-row gap-4">
+          <div className="flex items-center flex-row gap-2">
             <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
             <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
           </div>

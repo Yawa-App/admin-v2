@@ -1,13 +1,17 @@
+"use client"
+
+import Image from 'next/image'
+import YawaLogo from '../../../../public/yawa icon Wht-01.svg'
+
 export default function Example() {
     return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            {/* <img
-              alt="Your Company"
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-              className="mx-auto h-10 w-auto"
-            /> */}
+            <div className="flex items-center flex-row gap-2">
+              <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
+              <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
+            </div>
             <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
               Reset your password
             </h2>
@@ -35,7 +39,7 @@ export default function Example() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-[#03BDE9] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign in
+                  Submit
                 </button>
               </div>
             </form>
