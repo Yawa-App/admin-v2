@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
-import yawaLogo from '../public/logoWhite.png'
+import YawaLogo from '../public/yawa icon Wht-01.svg'
 
 export default function YawaEnterpriseCTA() {
     const router = useRouter();
@@ -11,13 +11,10 @@ export default function YawaEnterpriseCTA() {
   return (
     <section className="h-[100vh] bg-gradient-to-b from-white to-[#E6F8FC] py-16 md:py-24 text-gray-800 flex justify-end items-center">
       <div className="container mx-auto px-4 text-center flex justify-end items-center flex-col">
-      <Image
-            alt='Yawa Enterprise Solutions'
-            src={yawaLogo}
-            width={100}
-            height={100}
-            className='mx-auto h-10 w-auto mb-6'
-          />
+          <div className="flex items-center flex-row gap-4">
+            <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
+            <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
+          </div>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold my-6 text-gray-800 leading-tight">
           YAWA ENTERPRISE SOLUTION (YES)
         </h2>
