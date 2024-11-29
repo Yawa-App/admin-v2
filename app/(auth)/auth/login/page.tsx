@@ -27,7 +27,7 @@ export default function Example () {
         */}
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-          <div className="flex items-center flex-row gap-2">
+          <div className="flex justify-center items-center flex-row gap-2">
             <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
             <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
           </div>
