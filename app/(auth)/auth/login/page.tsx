@@ -15,7 +15,7 @@ export default function Example () {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    // await handlelogin(email, password)
+    await handlelogin(email, password)
     router.push('/dashboard')
   }
 
