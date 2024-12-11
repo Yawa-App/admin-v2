@@ -34,7 +34,7 @@ export default function CustomizePage() {
 
                 <div className="grid grid-cols-4 gap-4">
                     {/* Displaying the categories */}
-                    {data.data.map((category: { _id: string; name: string; description: string }) => (
+                    {data?.data.map((category: { _id: string; name: string; description: string }) => (
                         <div key={category._id} className="border p-4 mb-2 rounded border-slate-400">
                             <h3 className="text-lg font-semibold text-gray-800 capitalize">{category.name}</h3>
                             <p className="text-gray-800 capitalize">{category.description}</p>

@@ -3,16 +3,20 @@ import { useState } from 'react'
 import { useAuth } from '@/components/hooks/useAuth'
 import Image from 'next/image'
 import YawaLogo from '../../../../public/yawa icon Wht-01.svg'
+import { useRouter } from 'next/navigation'
 
 export default function Example () {
   const { handlelogin, isLoading, } = useAuth()
+  const router = useRouter()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    await handlelogin(email, password)
+    // await handlelogin(email, password)
+    router.push('/dashboard')
   }
 
   return (
@@ -31,7 +35,7 @@ export default function Example () {
             <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
             <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
           </div>
-          <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
+          <h2 className='mt-6 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>
             Yawa Enterprise Solution
           </h2>
           <h2 className='mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900'>

@@ -26,7 +26,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   const handleLogout = useCallback(() => {
     // Remove the auth token
     document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    router.push("/login");
+    router.push("/auth/login");
   }, [router]);
 
   return (

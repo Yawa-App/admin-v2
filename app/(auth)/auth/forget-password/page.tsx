@@ -12,7 +12,7 @@ export default function Example() {
               <Image src={YawaLogo} alt='Yawa' width={45} height={45} />
               <h2 className="text-4xl font-bold text-gray-800">YAWA</h2>
             </div>
-            <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
+            <h2 className="mt-6 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
               Reset your password
             </h2>
           </div>

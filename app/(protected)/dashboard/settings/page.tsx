@@ -80,9 +80,9 @@ export default function ProfileSettings() {
             <TabsTrigger value="password" className="text-gray-800">
               Password
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="text-gray-800">
+            {/* <TabsTrigger value="notifications" className="text-gray-800">
               Notifications
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           {/* General */}
