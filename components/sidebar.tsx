@@ -138,7 +138,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
               <Users2 className="h-4 w-4" />
               <span className="text-md font-medium">Administrators</span>
             </Link>
-            <Link
+            {/* <Link
               href="#"
               className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-none 
                   ${
@@ -150,7 +150,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
             >
               <Broadcast className="h-4 w-4" />
               <span className="text-md font-medium">Broadcast</span>
-            </Link>
+            </Link> */}
             <Link
               href="/dashboard/customise"
               className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-none 
