@@ -61,7 +61,7 @@ export default function YawaEnterpriseCTA() {
             onClick={() => router.push('/auth/login')}
             className="border-[#03BDE9] text-[#03BDE9] hover:bg-[#03BDE9] hover:text-white font-bold py-3 px-6 rounded-none text-lg transition-colors duration-300"
           >
-            Request Demo
+            Verify Your Account
           </Button>
         </div>
       </div>
